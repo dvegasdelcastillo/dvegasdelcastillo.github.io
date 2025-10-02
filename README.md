@@ -1,1 +1,1 @@
-dvegasdelcastillo.github.io/
+dvegasdelcastillo.github.io
