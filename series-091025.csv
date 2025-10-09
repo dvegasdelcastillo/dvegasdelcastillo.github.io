@@ -1,11 +1,4 @@
-﻿Title,UK Whole Economy: Output per hour worked SA: Index 2022 = 100
-CDID,LZVB
-Source dataset ID,PRDY
-PreUnit,
-Unit,"Index, base year = 100"
-Release date,14-08-2025
-Next release,13 November 2025
-Important notes,
+date, value
 1971,42.5
 1972,43.7
 1973,45.8
@@ -277,3 +270,4 @@ Important notes,
 2024 Q3,98.0
 2024 Q4,98.7
 2025 Q1,99.0
+
