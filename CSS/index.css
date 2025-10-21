@@ -4,8 +4,9 @@
 body{
     background-color: #273349;
     max-width: 2000px;
-    margin: auto;
+    margin:0 auto;
     box-sizing:border-box;
+    line-height: 1.1;
 }
 
 h1{
