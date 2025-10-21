@@ -3,9 +3,9 @@
 /* ============= Fonts ========= */
 body{
     background-color: #273349;
-    max-width: 2000px;
+    max-width: 1300px;
     margin:0 auto;
-    box-sizing:border-box;
+    /*box-sizing:content-box;*/
     line-height: 1.1;
 }
 
@@ -69,10 +69,10 @@ a:link:active, a:visited:active {
 
 .title-bar{
   position: relative;
-  top:0%;
-  left: 0%;
+  top:10%;
+  left: 50%;
   width:100%;
-  margin: 0;
+  margin: 1.1;
   background-color:#1c2f51;
   height: auto;
   line-height:0;
