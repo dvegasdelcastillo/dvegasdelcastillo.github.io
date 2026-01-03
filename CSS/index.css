@@ -1,523 +1,240 @@
-/* Original Author: Sacha Henson | Student ID: 1930431 */
+/* Base layout */
 
-/* ============= Fonts ========= */
-body{
-    background-color: #273349;
-    max-width: 1300px;
-    margin:0 auto;
-    /*box-sizing:content-box;*/
-    line-height: 1.1;
-}
-
-h1{
-  color: #d0f1fd;
-  font-family: 'IBM Plex Sans', sans-serif;
-}
-
-h2{
-  text-decoration: underline;
-  text-align: center;
-  color: white;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size:26px;
-}
-
-h3{
-  color: #efe9e6;
-  font-family: 'IBM Plex Sans', sans-serif;
-}
-
-p{
-  font-family: 'IBM Plex Sans', sans-serif;
-  color: #e4effa;
-}
-
-/* ============= Chart ========= */
-.chart{
-  width: 300;
-  height: 350;
-  border-width: 5px;
-  background-color: #273349;
-  border-style: solid;
-  border-radius: 5px;
-  border-color: #273349;
-  margin: auto;
-  padding: 10px;
-}
-
-.vega-bind-name{
-  font-family: 'IBM Plex Sans', sans-serif;
-  color: #e1e5e4
-}
-
-.marks{
-  font-family: 'IBM Plex Sans', sans-serif;
-}
-
-/* ============= Clicked links ========= */
-
-a:link, a:visited {
-  color: #f3f3f2;
-  text-decoration: underline;
-  cursor: auto;
-}
-
-a:link:active, a:visited:active {
-  color: #e7ebe4;
-}
-  /* ============= Title bar ========= */
-
-.title-bar{
-  position: relative;
-  top:10%;
-  left: 50%;
-  width:100%;
-  margin: 1.1;
-  background-color:#1c2f51;
-  height: auto;
-  line-height:0;
-  word-wrap: break-word;
-  padding:10px;
-  }
-
-.title-bar h1{ 
-  font-size: 65px;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin: 50px;
-  }
-
-.title-bar p{ 
-    font-size: 20px;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: bold;
-    margin: 50px;
-}
-
- /* ============= Main ========= */
-
- .main{
-  font-family: 'IBM Plex Sans', sans-serif;
-  padding:10px;
-  vertical-align: center;
-  text-align: center;
-  color:  #EFEEF5;
-  top:50%;
-}
-
-.main p{
-  font-size: 25px;
-  line-height: 1.5;
-  margin: 17px auto;
-  max-width:900px;
-}
-
-.main button{
-  width: 150px;
-  margin:30px 10px;
-  color: #273349;
-  font-size: 25px;
-  border:1px solid #EFEEF5;
-  font-weight: 500;
-  background: #EFEEF5;
-  border-radius: 20px;
-  padding: 20px;
-  cursor:pointer;
-  transition: .3s;
-  z-index: -1;
-}
-
-.main button:hover{
-  border-radius: 5px;
-}
-
- /* ============= Skills icons ========= */
-
- .main2{
-  font-family: 'IBM Plex Sans', sans-serif;
-  text-align: center;
-  color:  #EFEEF5;
-}
-
-.main2 p{
-  font-size: 25px;
-  line-height: 1.5;
-  margin: 17px auto;
-  max-width:900px;
-}
-
-.box2 {
-  box-sizing:border-box;
-  background-color:#466d81;
-  width:auto;
-  border-radius: 35px;
-  padding:30px;
-  text-align:left;
-  color: rgb(200, 237, 248);
-  display:inline-block;
-  margin: 10px;
-  border-style:solid;
-  border-color: #c1e6f8;
-  font-size:25px;
-}
-
-.main2 button{
-  width: 140px;
-  margin:20px 10px;
-  color: #273349;
-  font-size: 25px;
-  border:1px solid #EFEEF5;
-  font-weight: 500;
-  background: #EFEEF5;
-  border-radius: 20px;
-  padding: 10px;
-  transition: .3s;
-  z-index: -1;
-  display: inline;
-}
-
-/* ============= Animation background ========= */
-.container-fluid{
-  height: 100%;
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  width: 100%;
-  background: #FFF;
 }
 
-.background1 {
-  background: linear-gradient(132deg, #7eb5b1, #6981b5, #212335);
-  background-size: 400% 400%;
-  animation: Gradient 20s ease infinite;
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  padding:0;
-  margin:0px;
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background: #f5f5f8;
+  color: #222;
+  line-height: 1.6;
 }
 
-
-.background2 {
-  background: linear-gradient(132deg, #baeae6,#7eb5b1, #6981b5, #212335,#14053d);
-  background-size: 400% 400%;
-  animation: Gradient 20s ease infinite;
-  position: relative;
-  height: cover;
-  width: 100%;
-  overflow: hidden;
-  padding:0;
-  margin:0px;
-}
-
-.cube {
-  position: absolute;
-  top: 80vh;
-  left: 45vw;
-  width: 10px;
-  height: 10px;
-  border: solid 1px #D7D4E4;
-  transform-origin: top left;
-  transform: scale(0) rotate(0deg) translate(-50%, -50%);
-  animation: cube 15s ease-in forwards infinite;
-}
-.cube:nth-child(2n) {
-  border-color: #FFF ;
-}
-.cube:nth-child(2) {
-  animation-delay: 2s;
-  left: 25vw;
-  top: 40vh;
-}
-.cube:nth-child(3) {
-  animation-delay: 4s;
-  left: 75vw;
-  top: 50vh;
-}
-.cube:nth-child(4) {
-  animation-delay: 6s;
-  left: 90vw;
-  top: 10vh;
-}
-.cube:nth-child(5) {
-  animation-delay: 8s;
-  left: 10vw;
-  top: 85vh;
-}
-.cube:nth-child(6) {
-  animation-delay: 10s;
-  left: 50vw;
-  top: 10vh;
-}
-
-/* Animate Background*/
-@keyframes Gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-@keyframes cube {
-  from {
-    transform: scale(0) rotate(0deg) translate(-50%, -50%);
-    opacity: 1;
-  }
-  to {
-    transform: scale(20) rotate(960deg) translate(-50%, -50%);
-    opacity: 0;
-  }
-}
-
-/* ============= Box elements ========= */
-
-.box {
-  box-sizing:border-box;
-  background-color:#273349;
-  width:auto;
-  border-radius:10px;
-  padding:10px;
-  text-align:left;
-  display:inline-block;
-  margin: 20px;
-  text-overflow: ellipsis;
-  width: auto;
-}
-
-.box p{
-  max-width: 500px;
-  margin: auto;
-  padding: 10px;
-}
-
-.box .chart {
-  align-items: center;
-  justify-content: center;
-}
-
-.box3 {
-  box-sizing:border-box;
-  background-color:#273349;
-  width:auto;
-  border-radius:10px;
-  padding:10px;
-  text-align:left;
-  display:inline-block;
-  margin: 20px;
-  text-overflow: ellipsis;
-}
-
-.box3 p{
-  margin: auto;
-  padding: 10px;
-  font-size:20px;
-  text-align:left;
-}
-
-.box3 h2{
-  margin: auto;
-  padding: 10px;
-  width:950px;
-  font-size:20px;
-}
-
-
-.box3 .chart {
-  align-items: center;
-  justify-content: center;
-}
-
-/* ============= Footer ========= */
-
-footer {
-  height: 100px
-}
-
-/* ============= Dot break ========= */
-
-.break {
+body {
   display: flex;
-  justify-content:center;
-  text-align:left;
-}
-.break .dot {
-  position: relative;
-  width: 2em;
-  height: 2em;
-  margin: 0.8em;
-  border-radius: 50%;
-  text-align: left;
-}
-.break .dot::before {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  border-radius: inherit;
-}
-.break .dot:nth-child(1) {
-  background: #7ef9ff;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.break .dot:nth-child(2) {
-  background: #89cff0;
+/* Top navigation like Sarah, but lighter */
+
+.header {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e2ea;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.break .dot:nth-child(3) {
-  background: #4f9cdb;
-}
-
-.break .dot:nth-child(4) {
-  background: #1a61b5;
-}
-
-.break .dot:nth-child(5) {
-  background: #000080;
-}
-
-@keyframes wave {
-  50%, 75% {
-    transform: scale(2.5);
- }
-  80%, 100% {
-    opacity: 0;
- }
-}
-
-
-/* ============= Container ========= */
-.container {
+.navbar {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
   align-items: center;
-  align-content: center;
-  width: auto;
-  padding:10px;
-  margin:auto;
-  max-width: 85%;
+  justify-content: space-between;
 }
 
-/* ============= Navigation bar ========= */
-
-/* Add a black background color to the top navigation */
-.topnav {
-  position:relative;
-  background-color: #273349;
-  overflow: hidden;
-  justify-items: right;
-  border-bottom:1px solid #EFEEF5;
-  margin-right: 0;
-  font-family: 'IBM Plex Sans', sans-serif;
-  opacity: 100%;
-  color:#EFEEF5;
+.navbar-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
 }
 
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  color: #EFEEF5;
-  text-align: center;
-  padding: 14px 16px;
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.nav-links a {
   text-decoration: none;
-  font-size: 17px;
+  color: #444;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
 }
 
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
+.nav-links a:hover {
+  background: #f0f0ff;
+  color: #2b3bbf;
 }
 
-/* Add a color to the active/current link */
-.topnav a.active {
-  background-color: #04AA6D;
-  color: white;
+/* Main content wrapper */
+
+.main {
+  flex: 1;
+  max-width: 960px;
+  margin: 1.5rem auto 2.5rem auto;
+  padding: 0 1.5rem;
 }
 
+/* Hero / intro (mix of both sites) */
 
+.hero {
+  text-align: left;
+  margin-bottom: 2rem;
+}
 
-/* ============= Phone exceptions ========= */
-@media screen and (max-width: 1000px) {
-  .main p{
-    font-size: 40px;
-    line-height: 1.5;
-    margin: 17px auto;
-    max-width:900px;
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.hero-subtitle {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.hero-meta {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.hero-meta a {
+  color: #2b3bbf;
+  text-decoration: none;
+}
+
+.hero-meta a:hover {
+  text-decoration: underline;
+}
+
+/* Section headings styled like Nicolas */
+
+section {
+  margin-bottom: 2rem;
+}
+
+section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 2px solid #e0e0f5;
+  padding-bottom: 0.2rem;
+}
+
+section p {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+}
+
+/* “Cards” for each PP434 challenge like Sarah’s portfolio blocks */
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin-top: 0.8rem;
+}
+
+.activity-card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+  padding: 1rem 1.1rem 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.activity-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+
+.activity-tag {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b6bb5;
+  margin-bottom: 0.3rem;
+}
+
+.activity-card p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.6rem;
+}
+
+.activity-links {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.activity-links a {
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: #2b3bbf;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: #eef0ff;
+  transition: background 0.2s, color 0.2s;
+}
+
+.activity-links a:hover {
+  background: #d6dbff;
+  color: #141b82;
+}
+
+/* Chart containers (for vegaEmbed divs) */
+
+.chart-block {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+  padding: 1rem;
+  margin-top: 0.7rem;
+}
+
+.chart-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+
+.chart-description {
+  font-size: 0.88rem;
+  color: #555;
+  margin-bottom: 0.6rem;
+}
+
+.chart-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Footer */
+
+.footer {
+  border-top: 1px solid #e2e2ea;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.8rem;
+  color: #777;
+  text-align: center;
+  background: #ffffff;
+}
+
+/* Responsive tweaks */
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
   }
-  .topnav {
-    position:relative;
-    background-color: #273349;
-    overflow: hidden;
-    justify-items: right;
-    border-bottom:1px solid #EFEEF5;
-    margin-right: 0;
-    font-family: 'IBM Plex Sans', sans-serif;
-    opacity: 100%;
-    color:#EFEEF5
-  }
-  
 
-  .topnav a {
-    float: left;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 40px;
+  .hero h1 {
+    font-size: 1.7rem;
   }
 
-  .main button{
-      width: 300px;
-      margin:100px auto ;
-      color: #273349;
-      font-size: 50px;
-      border:1px solid #EFEEF5;
-      font-weight: 500;
-      background: #EFEEF5;
-      border-radius: 20px;
-      padding: 50px;
-      cursor:pointer;
-      transition: .3s;
-      z-index: -1;
-      display:grid;
+  .main {
+    margin-top: 1rem;
   }
-
-.title-bar h1{
-  position: relative;
-  top:0%;
-  left: 0%;
-  width:100%;
-  margin: 0;
-  background-color:#1c2f51;
-  height: auto;
-  line-height:0;
-  word-wrap: break-word;
-  padding:30px;
-  font-size:70px
-  }
-
-p{
-  font-size: 30px;
-}
-.main2 p{
-  font-size: 30px;
-}
-.title-bar p{
-  font-size: 40px;
-}
-h2{
-  font-size: 40px;
-  
-}
-
-.box3 p{
-  font-size:30px;
-}
-
 }
