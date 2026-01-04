@@ -1,112 +1,311 @@
-<!-- the original name is Example 3 -->
-<!-- This HTML file provides a simple example of a portfolio page. It contains a header, a few sections, and a few charts. -->
-<!-- It works with the three css files in this folder: example1.css, example2.css and example3.css. -->
-<!-- The HTML file defines the structure of the page, and the CSS files define how it looks. -->
-<!-- The CSS examples are all designed to work with this page. Try swapping them out on line 29 and see what happens. -->
-
-<!-- Take a look around and make your own copy to adapt for your own use. -->
-
-<!-- This is a comment -->
-<!-- Comments are not displayed in the browser -->
-<!-- They can be used to leave notes in the code -->
-
 <!DOCTYPE html>
-<html class="no-js" lang=""> 
-    <!-- HTML is heirarchial: tags like this define elements on the page. 
-    Each tag does something different. For example:
-        - The <html> tag defines the whole document.
-        - The <h1> tag defines a large heading
-        - The <p> tag defines a paragraph
-        - Tags appear as an opening <div> and closing </div> pair
-    -->
-
-<head>    
-    <!-- The head tag links to resources our page needs and defines information about it. Tags in the <head> aren't displayed on the page. -->
-
-    <!-- This is a link to a stylesheet which contains rules about how each element on the page should be defined-->
-    <!-- Try swapping example1.css to another, and take a look at example1.css to see if you understand it-->
-    <!--link rel="stylesheet" type="text/css" href="Example3.css"-->
-
-    <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="CSS/index.css">
-
-    <title>David Vegas' Portfolio</title> <!-- The title displayed in the browser tab, not on the page itself -->
-
-    <!--Favicon-->
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-
-    <!-- This is a link to the vega-lite which we're using to make graphs -->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JP82FVH378"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
-
-    <style>
-       @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
-    </style>    
-
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="David Vegas del Castillo - MPP candidate | LSE">
+    <title>David Vegas del Castillo | Portfolio</title>
+    
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
 </head>
-
-
-<body> 
-    <h1 class="big" style="margin-bottom: 0px;">
-        David Vegas Del Castillo
-    </h1>
-    <p style="margin-top: 0px; color: darkblue">
-        <!-- we're setting the margin to 0px so the header and authour name are close together -->
-        David Vegas Del Castillo | <a href="https://www.linkedin.com/in/david-vegas/">LinkedIn</a> | <a
-            href="https://github.com/dvegasdelcastillo/">GitHub</a>
-    </p>
-    <h3 class="small"> <!-- We have added a class to the header called "small" which we can use to style it in the CSS -->
-        This page is my personal portfolio of charts. All the projects and charts produced here were made in the way the course PP434, taught by Richard Davies at the LSE MPP program in 2025. All the information is related 
-        to subjects of my personal interest, and it is an opportunity to put in the table some Peruvian topics that nowadays are so controversial.
-    </h3>
-
-    <!-- We're organising the page into sections, with each section containing a chart, title and a description -->
-    <section>
-        <div class="chart-description">
-            <h2>Section 1: A basic chart</h2>
-            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
-                We've organised the page into sections, with each section containing a chart, title and a description. Here, we can describe the chart and give some context.
-                As a first example, we're using a basic chart from our repo.
-            </p>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">David Vegas</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
         </div>
-        <figure id="Location1"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
-        <figure id="Location2"></figure>
-        <figure id="Location3"></figure>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <section id="home" class="page-section home-section">
+        <header class="section-header">
+            <div class="header-content">
+                <h1>David Vegas del Castillo</h1>
+                <p class="subtitle">MPP Candidate</p>
+                <p class="tagline">Automated Data Visualisation for Policymaking</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/david-vegas/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://github.com/dvegasdelcastillo" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="mailto:d.vegas-del-castillo@lse.ac.uk">Email</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-content">
+            <section class="content-card">
+                <h2>About Me</h2>
+                <div class="intro-text">
+                    <p><strong>Welcome!</strong> I'm David Vegas Del Castillo, a current student at the London School of Economics pursuing a Master's in Public Policy. I specialize in impact evaluation, institutional reform analysis, and evidence-based policymaking with a focus on Latin America and emerging markets.</p>
+                    <p><strong>Background:</strong> I hold an undergraduate degree in Economics from Pontificia Universidad Católica (PUC) in Peru. My research interests span electoral systems, populism, educational policy, and institutional economics.</p>
+                    <p><strong>Skills:</strong> Impact evaluation (RCT, RDD, DiD), econometric analysis, Stata, Python, data visualization, policy research, academic writing</p>
+                </div>
+                
+                <h3>Research Interests</h3>
+                <ul class="interests-list">
+                    <li><strong>Impact Evaluation & Evidence-Based Policy:</strong> Quantifying policy effectiveness through rigorous methodologies</li>
+                    <li><strong>Institutional Economics:</strong> How institutions shape development outcomes and citizen behavior</li>
+                    <li><strong>Electoral Systems & Democratic Governance:</strong> Understanding political polarization and anti-populism strategies</li>
+                    <li><strong>Educational Policy:</strong> Designing and evaluating interventions to improve learning outcomes</li>
+                    <li><strong>Latin American Development:</strong> Context-specific solutions for emerging economies</li>
+                </ul>
+
+                <h3>Current Focus</h3>
+                <p>At LSE, I'm completing my Master's thesis on institutional reform and policy implementation. I'm also developing data science skills to enhance my ability to conduct rigorous quantitative policy analysis and create compelling data visualizations for policy communication.</p>
+            </section>
+        </div>
     </section>
 
-    <!-- Do you want to add more sections? -->
-        <!-- Try copying pasting the section above -->
-        <!-- You'll need to change the id of the figure "<figure id="Location3"... -->
-        <!-- ... and add a new variable for the graph spec in the script at the bottom of the page -->
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="page-section portfolio-section">
+        <header class="section-header">
+            <h2>Portfolio & Skills</h2>
+            <p>Technical expertise and professional experience in policy research and data science</p>
+        </header>
 
+        <div class="page-content">
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-header">
+                        <h3>Impact Evaluation</h3>
+                        <span class="badge">Methodology</span>
+                    </div>
+                    <p><strong>Expertise:</strong> Randomized controlled trials (RCTs), regression discontinuity design (RDD), and difference-in-differences (DiD) estimation.</p>
+                    <p><strong>Applications:</strong> Educational interventions, cash transfer programs, institutional reforms in Latin America.</p>
+                    <p><strong>Tools:</strong> Stata, R, Python, econometric methods</p>
+                </div>
 
-    <!-- This is a script, it's a way to run JavaScript code on the page -->
-    <script>
-        // This is a comment in JavaScript - it's a different language to HTML and CSS
+                <div class="portfolio-item">
+                    <div class="portfolio-header">
+                        <h3>Data Visualization</h3>
+                        <span class="badge">Technical</span>
+                    </div>
+                    <p><strong>Skills:</strong> Creating publication-quality visualizations that communicate complex data insights to diverse audiences.</p>
+                    <p><strong>Tools:</strong> Vega-Lite, D3.js, ggplot2, Matplotlib, Tableau</p>
+                    <p><strong>Focus:</strong> Policy-relevant graphics, time series analysis, comparative visualizations</p>
+                </div>
 
-        let figure_1_spec = "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart2.json"; // We're storing the URL of the graph we want to display in a variable
-                                                                                                                    // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
+                <div class="portfolio-item">
+                    <div class="portfolio-header">
+                        <h3>Policy Analysis</h3>
+                        <span class="badge">Professional</span>
+                    </div>
+                    <p><strong>Specialty:</strong> Translating quantitative findings into clear policy briefs and recommendations for government agencies and international organizations.</p>
+                    <p><strong>Topics:</strong> Electoral systems, anti-corruption, institutional capacity, development policy</p>
+                    <p><strong>Formats:</strong> Policy briefs, academic papers, technical reports, executive summaries</p>
+                </div>
 
-        vegaEmbed('#Location1', figure_1_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
+                <div class="portfolio-item">
+                    <div class="portfolio-header">
+                        <h3>Web Development</h3>
+                        <span class="badge">Technical</span>
+                    </div>
+                    <p><strong>Skills:</strong> Building responsive, interactive data-driven web applications for policy communication.</p>
+                    <p><strong>Technologies:</strong> HTML, CSS, JavaScript, Vega-Lite, D3.js</p>
+                    <p><strong>Focus:</strong> Accessible design, data storytelling, user experience</p>
+                </div>
 
-        // Do you want to add more graphs?
-        // try defining a new variable for figure_3_spec, adding VegaEmbed for Location3, and adding a new section in the HTML
-        // e.g. 
-        // let figure_3_spec = ...
-        // vegaEmbed('#Location3', figure_3_spec)
+                <div class="portfolio-item">
+                    <div class="portfolio-header">
+                        <h3>Statistical Analysis</h3>
+                        <span class="badge">Methodology</span>
+                    </div>
+                    <p><strong>Expertise:</strong> Econometric modeling, hypothesis testing, causal inference, multivariate analysis.</p>
+                    <p><strong>Applications:</strong> Program evaluation, policy impact assessment, institutional analysis</p>
+                    <p><strong>Tools:</strong> Stata, R, Python, SAS</p>
+                </div>
 
-        let figure_2_spec = "https://raw.githubusercontent.com/dvegasdelcastillo/dvegasdelcastillo.github.io/refs/heads/main/graph/visualization.vl.json"; // some comments if you need it
-        vegaEmbed('#Location2', figure_2_spec)
+                <div class="portfolio-item">
+                    <div class="portfolio-header">
+                        <h3>Research Writing</h3>
+                        <span class="badge">Professional</span>
+                    </div>
+                    <p><strong>Expertise:</strong> Clear, compelling academic and policy writing with rigorous methodology documentation.</p>
+                    <p><strong>Experience:</strong> Working papers, journal submissions, policy briefs, technical documentation</p>
+                    <p><strong>Languages:</strong> English (native professional level), Spanish (native)</p>
+                </div>
+            </div>
 
-        let figure_3_spec = "https://raw.githubusercontent.com/dvegasdelcastillo/dvegasdelcastillo.github.io/refs/heads/main/graph/wk1_chart2.json"; // some comments if you need it
-        vegaEmbed('#Location3', figure_3_spec)
+            <section class="content-card" style="margin-top: 40px;">
+                <h3>Education & Credentials</h3>
+                <ul class="interests-list">
+                    <li><strong>Master's in Public Policy</strong> | London School of Economics (LSE), 2025-2026</li>
+                    <li><strong>Bachelor's in Economics</strong> | Pontificia Universidad Católica (PUC), Peru</li>
+                    <li><strong>Specialized Training:</strong> Impact evaluation, institutional economics, electoral systems, development policy</li>
+                </ul>
+            </section>
+        </div>
+    </section>
 
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="page-section projects-section">
+        <header class="section-header">
+            <h2>Featured Projects</h2>
+            <p>Selected research and portfolio projects demonstrating technical and analytical capabilities</p>
+        </header>
 
-    </script>
+        <div class="page-content">
+            <article class="project-card">
+                <div class="project-header">
+                    <h3>PP434: Use of Time Analysis</h3>
+                    <span class="project-badge academic">Academic</span>
+                </div>
+                
+                <div class="project-content">
+                    <p><strong>Overview:</strong> Comprehensive data science portfolio analyzing time allocation patterns in Peru (2010, 2024) and the United Kingdom (2024), exploring gender inequality, work-life balance, and cross-country differences.</p>
+                    
+                    <h4>Key Features:</h4>
+                    <ul>
+                        <li>4 interactive Vega-Lite visualizations with drill-down functionality</li>
+                        <li>Time series analysis of 14-year trend in Peru</li>
+                        <li>Gender gap analysis across care work and household activities</li>
+                        <li>Cross-country comparative analysis (Peru vs. UK)</li>
+                        <li>Policy implications and recommendations</li>
+                    </ul>
 
+                    <h4>Key Findings:</h4>
+                    <ul>
+                        <li>Gender gaps in unpaid care work persist across all countries studied</li>
+                        <li>Limited progress on gender equality in Peru despite 14 years of economic growth</li>
+                        <li>Policy implications for childcare infrastructure and flexible work arrangements</li>
+                        <li>Work-life balance challenges disproportionately affect women</li>
+                    </ul>
+
+                    <p><strong>Technologies:</strong> Vega-Lite, D3.js, HTML/CSS, JavaScript, Data Analysis</p>
+                    <p><strong>Data Sources:</strong> National time use surveys (ENUT-Peru, ATUS-UK)</p>
+                    
+                    <div class="project-links">
+                        <a href="pp434/" class="btn-primary">View Project</a>
+                        <a href="pp434/portfolio.html" class="btn-secondary">Portfolio Challenges</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-header">
+                    <h3>Data Science Portfolio (CC1-CC10)</h3>
+                    <span class="project-badge portfolio">Portfolio</span>
+                </div>
+                
+                <div class="project-content">
+                    <p><strong>Overview:</strong> 10 comprehensive coding challenges covering the full spectrum of data science skills: visualization, data acquisition, APIs, web scraping, geospatial analysis, and machine learning.</p>
+                    
+                    <h4>Challenges Covered:</h4>
+                    <ul>
+                        <li><strong>CC1-CC2:</strong> Web hosting, data visualization with Vega-Lite</li>
+                        <li><strong>CC3-CC4:</strong> Policy debate visualization, chart replication and improvement</li>
+                        <li><strong>CC5-CC6:</strong> API integration, web scraping, batch data processing</li>
+                        <li><strong>CC7:</strong> Geographic data visualization (Scotland, Wales)</li>
+                        <li><strong>CC8:</strong> Big data handling and aggregation</li>
+                        <li><strong>CC9-CC10:</strong> Interactive charts, advanced analytics and machine learning</li>
+                    </ul>
+
+                    <p><strong>Technologies:</strong> Python, JavaScript, Vega-Lite, Google Colab, APIs, BeautifulSoup, scikit-learn</p>
+                    <p><strong>Focus:</strong> Practical data science skills for policy analysis and communication</p>
+                    
+                    <div class="project-links">
+                        <a href="pp434/portfolio.html" class="btn-primary">View Portfolio</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-header">
+                    <h3>Impact Evaluation Research</h3>
+                    <span class="project-badge research">Research</span>
+                </div>
+                
+                <div class="project-content">
+                    <p><strong>Overview:</strong> Applied research in impact evaluation methodology, analyzing policy programs and institutional reforms using rigorous quantitative methods.</p>
+                    
+                    <h4>Research Areas:</h4>
+                    <ul>
+                        <li>Educational interventions and learning outcomes</li>
+                        <li>Cash transfer program effectiveness</li>
+                        <li>Institutional reform implementation and adoption</li>
+                        <li>Electoral system design impacts</li>
+                        <li>Anti-corruption mechanism effectiveness</li>
+                    </ul>
+
+                    <h4>Methodologies Applied:</h4>
+                    <ul>
+                        <li>Randomized Controlled Trials (RCTs)</li>
+                        <li>Regression Discontinuity Design (RDD)</li>
+                        <li>Difference-in-Differences (DiD)</li>
+                        <li>Propensity Score Matching</li>
+                        <li>Instrumental Variables</li>
+                    </ul>
+
+                    <p><strong>Tools:</strong> Stata, R, Python, econometric methods</p>
+                    <p><strong>Geography Focus:</strong> Latin America, Sub-Saharan Africa, South Asia</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="page-section contact-section">
+        <header class="section-header">
+            <h2>Get In Touch</h2>
+            <p>Open to collaboration, research opportunities, and policy discussions</p>
+        </header>
+
+        <div class="page-content">
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>Location</h3>
+                    <p>London, UK (Currently)</p>
+                    <p>Lima, Peru (Originally)</p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p><a href="mailto:d.vegas@lse.ac.uk">d.vegas@lse.ac.uk</a> (LSE)</p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Social</h3>
+                    <p>
+                        <a href="https://www.linkedin.com/in/diego-vegas-del-castillo/" target="_blank">LinkedIn</a> | 
+                        <a href="https://github.com/dvegasdelcastillo" target="_blank">GitHub</a>
+                    </p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Interests</h3>
+                    <p>Policy research | Impact evaluation | Data visualization</p>
+                </div>
+            </div>
+
+            <section class="content-card" style="margin-top: 40px;">
+                <h3>Current Affiliations</h3>
+                <ul class="interests-list">
+                    <li><strong>London School of Economics (LSE):</strong> Master's in Public Policy candidate, 2025-2026</li>
+                    <li><strong>Research Focus:</strong> Impact evaluation, institutional economics, Latin American policy</li>
+                    <li><strong>Data Science Portfolio:</strong> 10 coding challenges covering data visualization, APIs, web scraping, and machine learning</li>
+                </ul>
+            </section>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Diego Vegas del Castillo. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/diego-vegas-del-castillo/" target="_blank">LinkedIn</a> | 
+                <a href="https://github.com/dvegasdelcastillo" target="_blank">GitHub</a> | 
+                <a href="mailto:d.vegas@lse.ac.uk">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="JS/script.js"></script>
 </body>
-    
 </html>
