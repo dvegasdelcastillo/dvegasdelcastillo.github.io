@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio – PP434 Coding Challenges</title>
+    <title>Project – Use of Time in Peru and UK</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
@@ -13,11 +13,11 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Portfolio</div>
+                <div class="logo">Project</div>
                 <nav>
                     <a href="index.html" class="nav-link">Home</a>
-                    <a href="portfolio.html" class="nav-link active">Portfolio</a>
-                    <a href="project.html" class="nav-link">Project</a>
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="project.html" class="nav-link active">Project</a>
                 </nav>
             </div>
         </div>
@@ -25,75 +25,96 @@
 
     <main>
         <div class="container">
-            <section id="portfolio">
-                <div class="portfolio-intro">
-                    <h2>Portfolio Challenges (CC1-CC10)</h2>
-                    <p>The portfolio comprises 10 coding challenges (CC1-CC10), each demonstrating specific technical skills and resulting in data visualizations. Each challenge is worth 2 points (20 points total). Below are my completed challenges:</p>
+            <section id="project">
+                <div class="project-header">
+                    <h2>Project: Use of Time in Peru (2010-2024) and UK (2024)</h2>
+                    <p style="font-size: 1.1rem; color: #666; margin-top: 1.5rem;">An empirical analysis examining temporal patterns, leisure inequality, and policy implications across two distinct economies and time periods.</p>
                 </div>
 
-                <!-- CC1: Hosting -->
-                <div class="challenge-container">
-                    <h3>CC1: Hosting - Display Charts in Your Site</h3>
-                    <p>Set up GitHub Pages and embed live Vega-Lite visualizations using vegaEmbed function.</p>
-                    <div class="chart-grid">
-                        <div class="chart-item">
-                            <h4>Chart 1: UK GDP Growth</h4>
-                            <div id="viz-cc1-1"></div>
-                        </div>
-                        <div class="chart-item">
-                            <h4>Chart 2: Inflation Trends</h4>
-                            <div id="viz-cc1-2"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CC2: Building -->
-                <div class="challenge-container">
-                    <h3>CC2: Building - Create Your Own Visualisations</h3>
-                    <p>Create custom charts using Economics Observatory data hub or other sources.</p>
-                    <div class="chart-grid">
-                        <div class="chart-item">
-                            <h4>Chart 3: Custom Analysis 1</h4>
-                            <div id="viz-cc2-1"></div>
-                        </div>
-                        <div class="chart-item">
-                            <h4>Chart 4: Custom Analysis 2</h4>
-                            <div id="viz-cc2-2"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CC3: Debate -->
-                <div class="challenge-container">
-                    <h3>CC3: Debate - Use Visualisation in Policy Commentary</h3>
-                    <p><strong>Policy Topic (≤25 words):</strong> Education quality and funding inequality in Latin America affect long-term economic development and social mobility.</p>
-                    <div class="chart-grid">
-                        <div class="chart-item">
-                            <h4>Chart 5: Supporting Evidence</h4>
-                            <div id="viz-cc3-1"></div>
-                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;"><em>Commentary (≤25 words): Countries with higher education spending demonstrate improved GDP growth and reduced inequality markers.</em></p>
-                        </div>
-                        <div class="chart-item">
-                            <h4>Chart 6: Comparative Analysis</h4>
-                            <div id="viz-cc3-2"></div>
-                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;"><em>Commentary (≤25 words): Regional disparities in education funding correlate with persistent developmental differences across Latin America.</em></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CC4-CC10 Placeholder -->
-                <div class="challenge-container" style="background: #f0f0f0; border-left: 5px solid #999;">
-                    <h3>CC4-CC10: In Progress</h3>
-                    <p>Remaining challenges in development:</p>
-                    <ul style="margin-left: 2rem; color: #666; line-height: 2;">
-                        <li><strong>CC4:</strong> Replication - Re-create and improve someone's chart</li>
-                        <li><strong>CC5:</strong> Accessing Data - Scraper and API integration</li>
-                        <li><strong>CC6:</strong> Loops - Build a dashboard with batch downloads</li>
-                        <li><strong>CC7:</strong> Maps - Base maps and choropleths (Scotland, Wales)</li>
-                        <li><strong>CC8:</strong> Big Data - Extract story from millions of prices</li>
-                        <li><strong>CC9:</strong> Two Interactive Charts - Advanced interactivity</li>
-                        <li><strong>CC10:</strong> Advanced Analysis and Machine Learning</li>
+                <div class="project-section">
+                    <h3>1. Aims</h3>
+                    <p>This project investigates how time allocation patterns differ across populations and economic contexts. Specifically, I examine:</p>
+                    <ul style="margin-left: 2rem; color: #666; line-height: 1.8;">
+                        <li><strong>Temporal Patterns in Peru (2010-2024):</strong> How have household time-use patterns evolved over 14 years? Do leisure inequalities persist?</li>
+                        <li><strong>UK 2024 Benchmark:</strong> How do current UK time-use patterns compare to Peru's trends?</li>
+                        <li><strong>Policy Implications:</strong> What insights can inform policy on work-life balance, childcare, and inequality?</li>
                     </ul>
+                </div>
+
+                <div class="project-section">
+                    <h3>2. Data</h3>
+                    <p><strong>Peru Time-Use Survey (ENUT 2010):</strong> National survey of household time allocation, covering work, leisure, care activities.</p>
+                    <p><strong>Peru Updated Data (2024):</strong> Latest INEI data on contemporary time-use patterns.</p>
+                    <p><strong>UK Time Use Survey (2024):</strong> Office for National Statistics time-use data for comparative analysis.</p>
+                    <div class="code-reference">
+                        Data sources: INEI Peru, ONS UK<br>
+                        Access method: Public repositories, API calls where available<br>
+                        Format: CSV, JSON<br>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h3>3. Tools & Methodology</h3>
+                    <p><strong>Data Cleaning & Preparation:</strong> Python (Pandas) for data wrangling, transformation to tidy format.</p>
+                    <p><strong>Analysis Approach:</strong></p>
+                    <ul style="margin-left: 2rem; color: #666; line-height: 1.8;">
+                        <li>Descriptive statistics on time allocation by activity and demographic</li>
+                        <li>Temporal trend analysis (2010 vs 2024)</li>
+                        <li>Inequality measures (Gini coefficients on leisure time)</li>
+                        <li>Comparative analysis (Peru vs UK)</li>
+                        <li>Advanced analytics: correlation analysis, regression on leisure determinants</li>
+                    </ul>
+                    <p style="margin-top: 1.5rem;"><strong>Visualization:</strong> Vega-Lite for interactive, publication-ready charts with clear policy narratives.</p>
+                </div>
+
+                <div class="project-section">
+                    <h3>4. Key Visualizations</h3>
+                    <p>The following visualizations tell the story of time-use evolution and inequality:</p>
+                    <div class="project-viz-grid">
+                        <div class="project-viz">
+                            <h4>Visualization 1: Time Allocation by Activity - Peru 2010 vs 2024</h4>
+                            <div id="viz-project-1"></div>
+                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;">Stacked bar chart showing how Peruvians allocate daily time across work, leisure, care, and personal maintenance.</p>
+                        </div>
+                        <div class="project-viz">
+                            <h4>Visualization 2: Leisure Time Inequality - Gini Coefficient Trend</h4>
+                            <div id="viz-project-2"></div>
+                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;">Line chart tracking inequality in leisure time distribution over 14 years, with demographic breakdowns.</p>
+                        </div>
+                        <div class="project-viz">
+                            <h4>Visualization 3: Gender Gaps in Unpaid Care Work</h4>
+                            <div id="viz-project-3"></div>
+                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;">Comparative visualization of unpaid care work burden by gender in Peru and UK.</p>
+                        </div>
+                        <div class="project-viz">
+                            <h4>Visualization 4: Peru vs UK - Time Use Comparison 2024</h4>
+                            <div id="viz-project-4"></div>
+                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;">Side-by-side comparison of time allocation patterns in two distinct economies.</p>
+                        </div>
+                        <div class="project-viz">
+                            <h4>Visualization 5: Interactive Dashboard - Demographic Analysis</h4>
+                            <div id="viz-project-5"></div>
+                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;">Interactive chart allowing exploration of time-use patterns by age, education, and employment status.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h3>5. Conclusions & Policy Implications</h3>
+                    <p>This analysis reveals significant patterns in how time is allocated across different populations. Key findings suggest:</p>
+                    <ul style="margin-left: 2rem; color: #666; line-height: 1.8;">
+                        <li><strong>Persistent Inequality:</strong> Leisure time remains unequally distributed, particularly among women and lower-income households.</li>
+                        <li><strong>Structural Change:</strong> Peru's time-use patterns show modest shifts toward greater leisure formalization between 2010 and 2024.</li>
+                        <li><strong>UK Comparison:</strong> Developed economy patterns show different constraints, but similar gender-based inequities.</li>
+                        <li><strong>Policy Opportunities:</strong> Addressing time poverty requires multi-sector coordination on work regulation, childcare infrastructure, and cultural norms.</li>
+                    </ul>
+                </div>
+
+                <div class="project-section">
+                    <h3>6. Technical Implementation</h3>
+                    <p><strong>Code Repository:</strong> <a href="https://github.com/dvegasdelcastillo/dvegasdelcastillo.github.io" target="_blank" style="color: #667eea;">View on GitHub</a></p>
+                    <p><strong>Data Processing Notebook:</strong> <a href="https://colab.research.google.com/INCLUYE_TU_NOTEBOOK" target="_blank" style="color: #667eea;">Google Colab Notebook</a></p>
+                    <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;"><em>All code is open-source, documented, and designed for replication and extension by other researchers.</em></p>
                 </div>
             </section>
         </div>
@@ -108,6 +129,6 @@
         </p>
     </footer>
 
-    <script src="js/portfolio-charts.js"></script>
+    <script src="js/project-charts.js"></script>
 </body>
 </html>
