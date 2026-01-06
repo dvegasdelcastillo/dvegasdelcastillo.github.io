@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio – PP434 Coding Challenges</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Portfolio</div>
+                <nav>
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                    <a href="project.html" class="nav-link">Project</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section id="portfolio">
+                <div class="portfolio-intro">
+                    <h2>Portfolio Challenges (CC1-CC10)</h2>
+                    <p>The portfolio comprises 10 coding challenges (CC1-CC10), each demonstrating specific technical skills and resulting in data visualizations. Each challenge is worth 2 points (20 points total). Below are my completed challenges:</p>
+                </div>
+
+                <!-- CC1: Hosting -->
+                <div class="challenge-container">
+                    <h3>CC1: Hosting - Display Charts in Your Site</h3>
+                    <p>Set up GitHub Pages and embed live Vega-Lite visualizations using vegaEmbed function.</p>
+                    <div class="chart-grid">
+                        <div class="chart-item">
+                            <h4>Chart 1: UK GDP Growth</h4>
+                            <div id="viz-cc1-1"></div>
+                        </div>
+                        <div class="chart-item">
+                            <h4>Chart 2: Inflation Trends</h4>
+                            <div id="viz-cc1-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CC2: Building -->
+                <div class="challenge-container">
+                    <h3>CC2: Building - Create Your Own Visualisations</h3>
+                    <p>Create custom charts using Economics Observatory data hub or other sources.</p>
+                    <div class="chart-grid">
+                        <div class="chart-item">
+                            <h4>Chart 3: Custom Analysis 1</h4>
+                            <div id="viz-cc2-1"></div>
+                        </div>
+                        <div class="chart-item">
+                            <h4>Chart 4: Custom Analysis 2</h4>
+                            <div id="viz-cc2-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CC3: Debate -->
+                <div class="challenge-container">
+                    <h3>CC3: Debate - Use Visualisation in Policy Commentary</h3>
+                    <p><strong>Policy Topic (≤25 words):</strong> Education quality and funding inequality in Latin America affect long-term economic development and social mobility.</p>
+                    <div class="chart-grid">
+                        <div class="chart-item">
+                            <h4>Chart 5: Supporting Evidence</h4>
+                            <div id="viz-cc3-1"></div>
+                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;"><em>Commentary (≤25 words): Countries with higher education spending demonstrate improved GDP growth and reduced inequality markers.</em></p>
+                        </div>
+                        <div class="chart-item">
+                            <h4>Chart 6: Comparative Analysis</h4>
+                            <div id="viz-cc3-2"></div>
+                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;"><em>Commentary (≤25 words): Regional disparities in education funding correlate with persistent developmental differences across Latin America.</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CC4-CC10 Placeholder -->
+                <div class="challenge-container" style="background: #f0f0f0; border-left: 5px solid #999;">
+                    <h3>CC4-CC10: In Progress</h3>
+                    <p>Remaining challenges in development:</p>
+                    <ul style="margin-left: 2rem; color: #666; line-height: 2;">
+                        <li><strong>CC4:</strong> Replication - Re-create and improve someone's chart</li>
+                        <li><strong>CC5:</strong> Accessing Data - Scraper and API integration</li>
+                        <li><strong>CC6:</strong> Loops - Build a dashboard with batch downloads</li>
+                        <li><strong>CC7:</strong> Maps - Base maps and choropleths (Scotland, Wales)</li>
+                        <li><strong>CC8:</strong> Big Data - Extract story from millions of prices</li>
+                        <li><strong>CC9:</strong> Two Interactive Charts - Advanced interactivity</li>
+                        <li><strong>CC10:</strong> Advanced Analysis and Machine Learning</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Daniela Vegas. PP434 Data Science Portfolio.</p>
+        <p>Course: PP434 Automated Data Visualisation for Policymaking | LSE</p>
+        <p>
+            <a href="https://www.linkedin.com/in/INCLUYE_TU_LINKEDIN" target="_blank">LinkedIn</a> | 
+            <a href="https://github.com/dvegasdelcastillo" target="_blank">GitHub</a>
+        </p>
+    </footer>
+
+    <script src="js/portfolio-charts.js"></script>
+</body>
+</html>

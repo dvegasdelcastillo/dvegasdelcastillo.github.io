@@ -3,309 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="David Vegas del Castillo - MPP candidate | LSE">
-    <title>David Vegas del Castillo | Portfolio</title>
-    
-    <!-- External Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    <title>Daniela Vegas – Data Science for Policy</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 </head>
 <body>
-    <!-- NAVIGATION -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">David Vegas</div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- HOME SECTION -->
-    <section id="home" class="page-section home-section">
-        <header class="section-header">
+    <header>
+        <div class="container">
             <div class="header-content">
-                <h1>David Vegas del Castillo</h1>
-                <p class="subtitle">MPP Candidate</p>
-                <p class="tagline">Automated Data Visualisation for Policymaking</p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/david-vegas/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    <a href="https://github.com/dvegasdelcastillo" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <a href="mailto:d.vegas-del-castillo@lse.ac.uk">Email</a>
-                </div>
+                <div class="logo">Daniela Vegas</div>
+                <nav>
+                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="project.html" class="nav-link">Project</a>
+                </nav>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <div class="page-content">
-            <section class="content-card">
-                <h2>About Me</h2>
-                <div class="intro-text">
-                    <p><strong>Welcome!</strong> I'm David Vegas Del Castillo, a current student at the London School of Economics pursuing a Master's in Public Policy. I specialize in impact evaluation, institutional reform analysis, and evidence-based policymaking with a focus on Latin America and emerging markets.</p>
-                    <p><strong>Background:</strong> I hold an undergraduate degree in Economics from Pontificia Universidad Católica (PUC) in Peru. My research interests span electoral systems, populism, educational policy, and institutional economics.</p>
-                    <p><strong>Skills:</strong> Impact evaluation (RCT, RDD, DiD), econometric analysis, Stata, Python, data visualization, policy research, academic writing</p>
+    <main>
+        <div class="container">
+            <section id="home" class="active">
+                <div class="hero">
+                    <h1>Data Science for Policy</h1>
+                    <p>Welcome to my PP434 portfolio. I am a Master of Public Policy student at the London School of Economics with experience in impact evaluation and policy research. This site showcases my journey in automated data visualisation and policy-relevant data analysis.</p>
+                    
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/INCLUYE_TU_LINKEDIN" target="_blank" rel="noopener noreferrer">
+                            🔗 LinkedIn
+                        </a>
+                        <a href="https://github.com/dvegasdelcastillo" target="_blank" rel="noopener noreferrer">
+                            💻 GitHub
+                        </a>
+                        <a href="https://github.com/dvegasdelcastillo/dvegasdelcastillo.github.io" target="_blank" rel="noopener noreferrer">
+                            📁 Repository
+                        </a>
+                    </div>
                 </div>
-                
-                <h3>Research Interests</h3>
-                <ul class="interests-list">
-                    <li><strong>Impact Evaluation & Evidence-Based Policy:</strong> Quantifying policy effectiveness through rigorous methodologies</li>
-                    <li><strong>Institutional Economics:</strong> How institutions shape development outcomes and citizen behavior</li>
-                    <li><strong>Electoral Systems & Democratic Governance:</strong> Understanding political polarization and anti-populism strategies</li>
-                    <li><strong>Educational Policy:</strong> Designing and evaluating interventions to improve learning outcomes</li>
-                    <li><strong>Latin American Development:</strong> Context-specific solutions for emerging economies</li>
-                </ul>
 
-                <h3>Current Focus</h3>
-                <p>At LSE, I'm completing my Master's thesis on institutional reform and policy implementation. I'm also developing data science skills to enhance my ability to conduct rigorous quantitative policy analysis and create compelling data visualizations for policy communication.</p>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3>About This Portfolio</h3>
+                        <p>This portfolio demonstrates skills in web development, data visualization, and policy analysis. Through 10 coding challenges, I explore topics including API integration, web scraping, interactive charts, and machine learning applications to real-world datasets.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>The Course</h3>
+                        <p><strong>PP434 - Automated Data Visualisation for Policymaking</strong> (LSE, 0.5 unit). A comprehensive course on using data to guide policy decisions through programming, visualization, and automation of analysis workflows.</p>
+                    </div>
+                </div>
+
+                <div class="about-grid mt-3">
+                    <div class="about-card">
+                        <h3>Skills</h3>
+                        <p>
+                            <strong>Languages:</strong> Python, JavaScript, HTML, CSS<br>
+                            <strong>Tools:</strong> Vega-Lite, APIs, Web Scraping, Google Colab<br>
+                            <strong>Methods:</strong> Data Visualization, API Integration, Machine Learning, Impact Evaluation
+                        </p>
+                    </div>
+                    <div class="about-card">
+                        <h3>Navigation</h3>
+                        <p>
+                            <strong>Portfolio:</strong> 10 coding challenges demonstrating technical skills<br>
+                            <strong>Project:</strong> Comprehensive analysis of time use patterns in Peru and UK
+                        </p>
+                    </div>
+                </div>
             </section>
         </div>
-    </section>
+    </main>
 
-    <!-- PORTFOLIO SECTION -->
-    <section id="portfolio" class="page-section portfolio-section">
-        <header class="section-header">
-            <h2>Portfolio & Skills</h2>
-            <p>Technical expertise and professional experience in policy research and data science</p>
-        </header>
-
-        <div class="page-content">
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-header">
-                        <h3>Impact Evaluation</h3>
-                        <span class="badge">Methodology</span>
-                    </div>
-                    <p><strong>Expertise:</strong> Randomized controlled trials (RCTs), regression discontinuity design (RDD), and difference-in-differences (DiD) estimation.</p>
-                    <p><strong>Applications:</strong> Educational interventions, cash transfer programs, institutional reforms in Latin America.</p>
-                    <p><strong>Tools:</strong> Stata, R, Python, econometric methods</p>
-                </div>
-
-                <div class="portfolio-item">
-                    <div class="portfolio-header">
-                        <h3>Data Visualization</h3>
-                        <span class="badge">Technical</span>
-                    </div>
-                    <p><strong>Skills:</strong> Creating publication-quality visualizations that communicate complex data insights to diverse audiences.</p>
-                    <p><strong>Tools:</strong> Vega-Lite, D3.js, ggplot2, Matplotlib, Tableau</p>
-                    <p><strong>Focus:</strong> Policy-relevant graphics, time series analysis, comparative visualizations</p>
-                </div>
-
-                <div class="portfolio-item">
-                    <div class="portfolio-header">
-                        <h3>Policy Analysis</h3>
-                        <span class="badge">Professional</span>
-                    </div>
-                    <p><strong>Specialty:</strong> Translating quantitative findings into clear policy briefs and recommendations for government agencies and international organizations.</p>
-                    <p><strong>Topics:</strong> Electoral systems, anti-corruption, institutional capacity, development policy</p>
-                    <p><strong>Formats:</strong> Policy briefs, academic papers, technical reports, executive summaries</p>
-                </div>
-
-                <div class="portfolio-item">
-                    <div class="portfolio-header">
-                        <h3>Web Development</h3>
-                        <span class="badge">Technical</span>
-                    </div>
-                    <p><strong>Skills:</strong> Building responsive, interactive data-driven web applications for policy communication.</p>
-                    <p><strong>Technologies:</strong> HTML, CSS, JavaScript, Vega-Lite, D3.js</p>
-                    <p><strong>Focus:</strong> Accessible design, data storytelling, user experience</p>
-                </div>
-
-                <div class="portfolio-item">
-                    <div class="portfolio-header">
-                        <h3>Statistical Analysis</h3>
-                        <span class="badge">Methodology</span>
-                    </div>
-                    <p><strong>Expertise:</strong> Econometric modeling, hypothesis testing, causal inference, multivariate analysis.</p>
-                    <p><strong>Applications:</strong> Program evaluation, policy impact assessment, institutional analysis</p>
-                    <p><strong>Tools:</strong> Stata, R, Python, SAS</p>
-                </div>
-
-                <div class="portfolio-item">
-                    <div class="portfolio-header">
-                        <h3>Research Writing</h3>
-                        <span class="badge">Professional</span>
-                    </div>
-                    <p><strong>Expertise:</strong> Clear, compelling academic and policy writing with rigorous methodology documentation.</p>
-                    <p><strong>Experience:</strong> Working papers, journal submissions, policy briefs, technical documentation</p>
-                    <p><strong>Languages:</strong> English (native professional level), Spanish (native)</p>
-                </div>
-            </div>
-
-            <section class="content-card" style="margin-top: 40px;">
-                <h3>Education & Credentials</h3>
-                <ul class="interests-list">
-                    <li><strong>Master's in Public Policy</strong> | London School of Economics (LSE), 2025-2026</li>
-                    <li><strong>Bachelor's in Economics</strong> | Pontificia Universidad Católica (PUC), Peru</li>
-                    <li><strong>Specialized Training:</strong> Impact evaluation, institutional economics, electoral systems, development policy</li>
-                </ul>
-            </section>
-        </div>
-    </section>
-
-    <!-- PROJECTS SECTION -->
-    <section id="projects" class="page-section projects-section">
-        <header class="section-header">
-            <h2>Featured Projects</h2>
-            <p>Selected research and portfolio projects demonstrating technical and analytical capabilities</p>
-        </header>
-
-        <div class="page-content">
-            <article class="project-card">
-                <div class="project-header">
-                    <h3>PP434: Use of Time Analysis</h3>
-                    <span class="project-badge academic">Academic</span>
-                </div>
-                
-                <div class="project-content">
-                    <p><strong>Overview:</strong> Comprehensive data science portfolio analyzing time allocation patterns in Peru (2010, 2024) and the United Kingdom (2024), exploring gender inequality, work-life balance, and cross-country differences.</p>
-                    
-                    <h4>Key Features:</h4>
-                    <ul>
-                        <li>4 interactive Vega-Lite visualizations with drill-down functionality</li>
-                        <li>Time series analysis of 14-year trend in Peru</li>
-                        <li>Gender gap analysis across care work and household activities</li>
-                        <li>Cross-country comparative analysis (Peru vs. UK)</li>
-                        <li>Policy implications and recommendations</li>
-                    </ul>
-
-                    <h4>Key Findings:</h4>
-                    <ul>
-                        <li>Gender gaps in unpaid care work persist across all countries studied</li>
-                        <li>Limited progress on gender equality in Peru despite 14 years of economic growth</li>
-                        <li>Policy implications for childcare infrastructure and flexible work arrangements</li>
-                        <li>Work-life balance challenges disproportionately affect women</li>
-                    </ul>
-
-                    <p><strong>Technologies:</strong> Vega-Lite, D3.js, HTML/CSS, JavaScript, Data Analysis</p>
-                    <p><strong>Data Sources:</strong> National time use surveys (ENUT-Peru, ATUS-UK)</p>
-                    
-                    <div class="project-links">
-                        <a href="pp434/" class="btn-primary">View Project</a>
-                        <a href="pp434/portfolio.html" class="btn-secondary">Portfolio Challenges</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="project-card">
-                <div class="project-header">
-                    <h3>Data Science Portfolio (CC1-CC10)</h3>
-                    <span class="project-badge portfolio">Portfolio</span>
-                </div>
-                
-                <div class="project-content">
-                    <p><strong>Overview:</strong> 10 comprehensive coding challenges covering the full spectrum of data science skills: visualization, data acquisition, APIs, web scraping, geospatial analysis, and machine learning.</p>
-                    
-                    <h4>Challenges Covered:</h4>
-                    <ul>
-                        <li><strong>CC1-CC2:</strong> Web hosting, data visualization with Vega-Lite</li>
-                        <li><strong>CC3-CC4:</strong> Policy debate visualization, chart replication and improvement</li>
-                        <li><strong>CC5-CC6:</strong> API integration, web scraping, batch data processing</li>
-                        <li><strong>CC7:</strong> Geographic data visualization (Scotland, Wales)</li>
-                        <li><strong>CC8:</strong> Big data handling and aggregation</li>
-                        <li><strong>CC9-CC10:</strong> Interactive charts, advanced analytics and machine learning</li>
-                    </ul>
-
-                    <p><strong>Technologies:</strong> Python, JavaScript, Vega-Lite, Google Colab, APIs, BeautifulSoup, scikit-learn</p>
-                    <p><strong>Focus:</strong> Practical data science skills for policy analysis and communication</p>
-                    
-                    <div class="project-links">
-                        <a href="pp434/portfolio.html" class="btn-primary">View Portfolio</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="project-card">
-                <div class="project-header">
-                    <h3>Impact Evaluation Research</h3>
-                    <span class="project-badge research">Research</span>
-                </div>
-                
-                <div class="project-content">
-                    <p><strong>Overview:</strong> Applied research in impact evaluation methodology, analyzing policy programs and institutional reforms using rigorous quantitative methods.</p>
-                    
-                    <h4>Research Areas:</h4>
-                    <ul>
-                        <li>Educational interventions and learning outcomes</li>
-                        <li>Cash transfer program effectiveness</li>
-                        <li>Institutional reform implementation and adoption</li>
-                        <li>Electoral system design impacts</li>
-                        <li>Anti-corruption mechanism effectiveness</li>
-                    </ul>
-
-                    <h4>Methodologies Applied:</h4>
-                    <ul>
-                        <li>Randomized Controlled Trials (RCTs)</li>
-                        <li>Regression Discontinuity Design (RDD)</li>
-                        <li>Difference-in-Differences (DiD)</li>
-                        <li>Propensity Score Matching</li>
-                        <li>Instrumental Variables</li>
-                    </ul>
-
-                    <p><strong>Tools:</strong> Stata, R, Python, econometric methods</p>
-                    <p><strong>Geography Focus:</strong> Latin America, Sub-Saharan Africa, South Asia</p>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="page-section contact-section">
-        <header class="section-header">
-            <h2>Get In Touch</h2>
-            <p>Open to collaboration, research opportunities, and policy discussions</p>
-        </header>
-
-        <div class="page-content">
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <h3>Location</h3>
-                    <p>London, UK (Currently)</p>
-                    <p>Lima, Peru (Originally)</p>
-                </div>
-
-                <div class="contact-item">
-                    <h3>Email</h3>
-                    <p><a href="mailto:d.vegas@lse.ac.uk">d.vegas@lse.ac.uk</a> (LSE)</p>
-                </div>
-
-                <div class="contact-item">
-                    <h3>Social</h3>
-                    <p>
-                        <a href="https://www.linkedin.com/in/diego-vegas-del-castillo/" target="_blank">LinkedIn</a> | 
-                        <a href="https://github.com/dvegasdelcastillo" target="_blank">GitHub</a>
-                    </p>
-                </div>
-
-                <div class="contact-item">
-                    <h3>Interests</h3>
-                    <p>Policy research | Impact evaluation | Data visualization</p>
-                </div>
-            </div>
-
-            <section class="content-card" style="margin-top: 40px;">
-                <h3>Current Affiliations</h3>
-                <ul class="interests-list">
-                    <li><strong>London School of Economics (LSE):</strong> Master's in Public Policy candidate, 2025-2026</li>
-                    <li><strong>Research Focus:</strong> Impact evaluation, institutional economics, Latin American policy</li>
-                    <li><strong>Data Science Portfolio:</strong> 10 coding challenges covering data visualization, APIs, web scraping, and machine learning</li>
-                </ul>
-            </section>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2025 Diego Vegas del Castillo. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="https://www.linkedin.com/in/diego-vegas-del-castillo/" target="_blank">LinkedIn</a> | 
-                <a href="https://github.com/dvegasdelcastillo" target="_blank">GitHub</a> | 
-                <a href="mailto:d.vegas@lse.ac.uk">Email</a>
-            </div>
-        </div>
+    <footer>
+        <p>&copy; 2025 Daniela Vegas. PP434 Data Science Portfolio.</p>
+        <p>Course: PP434 Automated Data Visualisation for Policymaking | LSE</p>
+        <p>
+            <a href="https://www.linkedin.com/in/INCLUYE_TU_LINKEDIN" target="_blank">LinkedIn</a> | 
+            <a href="https://github.com/dvegasdelcastillo" target="_blank">GitHub</a> | 
+            <a href="mailto:your.email@lse.ac.uk">Email</a>
+        </p>
     </footer>
 
-    <script src="JS/script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
