@@ -1,45 +1,117 @@
 // ============================================
-// VIZ 1: Daily Time Allocation by Activity (Peru 2024)
+// VIZ 1: Daily Time Allocation by Activity
 // ============================================
 
 const spec_project_1 = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Daily Time Allocation by Activity - Peru 2024 (by Gender)",
+    "title": {
+        "text": "Time Allocation by Activity & Gender (Peru vs UK 2024)",
+        "subtitle": ["Daily hours distribution | Gender gaps in unpaid work"],
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "anchor": "start",
+        "color": "#667eea"
+    },
     "data": {
         "values": [
-            {"gender": "Women", "activity": "Paid Work", "hours": 5.2, "category": "Work"},
-            {"gender": "Women", "activity": "Household Work", "hours": 2.55, "category": "Unpaid"},
-            {"gender": "Women", "activity": "Care Work", "hours": 1.95, "category": "Unpaid"},
-            {"gender": "Women", "activity": "Personal Care", "hours": 8.83, "category": "Personal"},
-            {"gender": "Women", "activity": "Leisure", "hours": 2.50, "category": "Leisure"},
+            // PERU DATA
+            {"country": "🇵🇪 Peru", "gender": "Women", "activity": "Paid Work", "hours": 5.2, "color_group": "work"},
+            {"country": "🇵🇪 Peru", "gender": "Women", "activity": "Household", "hours": 2.55, "color_group": "unpaid"},
+            {"country": "🇵🇪 Peru", "gender": "Women", "activity": "Care", "hours": 1.95, "color_group": "unpaid"},
+            {"country": "🇵🇪 Peru", "gender": "Women", "activity": "Personal", "hours": 8.83, "color_group": "personal"},
+            {"country": "🇵🇪 Peru", "gender": "Women", "activity": "Leisure", "hours": 2.50, "color_group": "leisure"},
             
-            {"gender": "Men", "activity": "Paid Work", "hours": 5.8, "category": "Work"},
-            {"gender": "Men", "activity": "Household Work", "hours": 1.34, "category": "Unpaid"},
-            {"gender": "Men", "activity": "Care Work", "hours": 1.24, "category": "Unpaid"},
-            {"gender": "Men", "activity": "Personal Care", "hours": 8.96, "category": "Personal"},
-            {"gender": "Men", "activity": "Leisure", "hours": 3.50, "category": "Leisure"}
+            {"country": "🇵🇪 Peru", "gender": "Men", "activity": "Paid Work", "hours": 5.8, "color_group": "work"},
+            {"country": "🇵🇪 Peru", "gender": "Men", "activity": "Household", "hours": 1.34, "color_group": "unpaid"},
+            {"country": "🇵🇪 Peru", "gender": "Men", "activity": "Care", "hours": 1.24, "color_group": "unpaid"},
+            {"country": "🇵🇪 Peru", "gender": "Men", "activity": "Personal", "hours": 8.96, "color_group": "personal"},
+            {"country": "🇵🇪 Peru", "gender": "Men", "activity": "Leisure", "hours": 3.50, "color_group": "leisure"},
+            
+            // UK DATA
+            {"country": "🇬🇧 UK", "gender": "Women", "activity": "Paid Work", "hours": 6.1, "color_group": "work"},
+            {"country": "🇬🇧 UK", "gender": "Women", "activity": "Household", "hours": 2.29, "color_group": "unpaid"},
+            {"country": "🇬🇧 UK", "gender": "Women", "activity": "Care", "hours": 1.27, "color_group": "unpaid"},
+            {"country": "🇬🇧 UK", "gender": "Women", "activity": "Personal", "hours": 8.92, "color_group": "personal"},
+            {"country": "🇬🇧 UK", "gender": "Women", "activity": "Leisure", "hours": 3.70, "color_group": "leisure"},
+            
+            {"country": "🇬🇧 UK", "gender": "Men", "activity": "Paid Work", "hours": 6.5, "color_group": "work"},
+            {"country": "🇬🇧 UK", "gender": "Men", "activity": "Household", "hours": 1.35, "color_group": "unpaid"},
+            {"country": "🇬🇧 UK", "gender": "Men", "activity": "Care", "hours": 0.65, "color_group": "unpaid"},
+            {"country": "🇬🇧 UK", "gender": "Men", "activity": "Personal", "hours": 8.97, "color_group": "personal"},
+            {"country": "🇬🇧 UK", "gender": "Men", "activity": "Leisure", "hours": 4.27, "color_group": "leisure"}
         ]
     },
     "mark": "bar",
     "encoding": {
-        "x": {"field": "activity", "type": "nominal", "title": "Activity Type", "sort": ["Paid Work", "Household Work", "Care Work", "Personal Care", "Leisure"]},
-        "y": {"field": "hours", "type": "quantitative", "title": "Hours per Day", "scale": {"domain": [0, 10]}},
+        "x": {
+            "field": "activity",
+            "type": "nominal",
+            "title": "Activity Type",
+            "sort": ["Paid Work", "Household", "Care", "Personal", "Leisure"],
+            "axis": {
+                "labelFontSize": 12,
+                "labelAngle": -45,
+                "labelAnchor": "end",
+                "labelBaseline": "top"
+            }
+        },
+        "y": {
+            "field": "hours",
+            "type": "quantitative",
+            "title": "Hours per Day",
+            "scale": {"domain": [0, 10]},
+            "axis": {
+                "labelFontSize": 11,
+                "format": ".1f"
+            }
+        },
         "color": {
             "field": "gender",
             "type": "nominal",
             "title": "Gender",
-            "scale": {"scheme": "set2"}
+            "scale": {
+                "domain": ["Women", "Men"],
+                "range": ["#f06292", "#42a5f5"]
+            },
+            "legend": {
+                "title": {
+                    "text": "Gender",
+                    "fontSize": 12,
+                    "fontWeight": "bold"
+                },
+                "labelFontSize": 11,
+                "symbolSize": 200
+            }
+        },
+        "facet": {
+            "field": "country",
+            "type": "nominal",
+            "title": "Country",
+            "align": "all"
         },
         "xOffset": {"field": "gender"},
         "tooltip": [
+            {"field": "country", "type": "nominal", "title": "Country"},
             {"field": "activity", "type": "nominal", "title": "Activity"},
             {"field": "gender", "type": "nominal", "title": "Gender"},
             {"field": "hours", "type": "quantitative", "title": "Hours/Day", "format": ".2f"}
         ]
     },
-    "width": 600,
-    "height": 350,
-    "config": {"mark": {"opacity": 0.8}}
+    "width": 400,
+    "height": 380,
+    "config": {
+        "mark": {"opacity": 0.85},
+        "view": {"continuousWidth": 400, "continuousHeight": 380},
+        "axis": {
+            "grid": true,
+            "gridOpacity": 0.1
+        },
+        "title": {
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "offset": 15
+        }
+    }
 };
 
 // ============================================
@@ -48,33 +120,118 @@ const spec_project_1 = {
 
 const spec_project_2 = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Gender Gap in Unpaid Work - Peru 2010-2024 Temporal Trend",
+    "title": {
+        "text": "Temporal Trends in Time Allocation (Peru 2010-2024)",
+        "subtitle": ["How daily time distribution has changed over 14 years | Gender perspective"],
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "anchor": "start",
+        "color": "#667eea"
+    },
     "data": {
         "values": [
-            {"year": 2010, "metric": "Women's Unpaid Work", "hours": 34.0, "type": "Women"},
-            {"year": 2010, "metric": "Men's Unpaid Work", "hours": 12.5, "type": "Men"},
-            {"year": 2010, "metric": "Gender Gap", "hours": 21.5, "type": "Gap"},
+            // 2010 DATA
+            {"year": 2010, "gender": "Women", "activity": "Paid Work", "hours": 4.8, "period": "2010"},
+            {"year": 2010, "gender": "Women", "activity": "Household", "hours": 2.80, "period": "2010"},
+            {"year": 2010, "gender": "Women", "activity": "Care", "hours": 2.10, "period": "2010"},
+            {"year": 2010, "gender": "Women", "activity": "Personal", "hours": 8.70, "period": "2010"},
+            {"year": 2010, "gender": "Women", "activity": "Leisure", "hours": 2.40, "period": "2010"},
             
-            {"year": 2024, "metric": "Women's Unpaid Work", "hours": 39.5, "type": "Women"},
-            {"year": 2024, "metric": "Men's Unpaid Work", "hours": 18.0, "type": "Men"},
-            {"year": 2024, "metric": "Gender Gap", "hours": 21.5, "type": "Gap"}
+            {"year": 2010, "gender": "Men", "activity": "Paid Work", "hours": 5.5, "period": "2010"},
+            {"year": 2010, "gender": "Men", "activity": "Household", "hours": 1.50, "period": "2010"},
+            {"year": 2010, "gender": "Men", "activity": "Care", "hours": 1.30, "period": "2010"},
+            {"year": 2010, "gender": "Men", "activity": "Personal", "hours": 8.85, "period": "2010"},
+            {"year": 2010, "gender": "Men", "activity": "Leisure", "hours": 3.85, "period": "2010"},
+            
+            // 2024 DATA
+            {"year": 2024, "gender": "Women", "activity": "Paid Work", "hours": 5.2, "period": "2024"},
+            {"year": 2024, "gender": "Women", "activity": "Household", "hours": 2.55, "period": "2024"},
+            {"year": 2024, "gender": "Women", "activity": "Care", "hours": 1.95, "period": "2024"},
+            {"year": 2024, "gender": "Women", "activity": "Personal", "hours": 8.83, "period": "2024"},
+            {"year": 2024, "gender": "Women", "activity": "Leisure", "hours": 2.50, "period": "2024"},
+            
+            {"year": 2024, "gender": "Men", "activity": "Paid Work", "hours": 5.8, "period": "2024"},
+            {"year": 2024, "gender": "Men", "activity": "Household", "hours": 1.34, "period": "2024"},
+            {"year": 2024, "gender": "Men", "activity": "Care", "hours": 1.24, "period": "2024"},
+            {"year": 2024, "gender": "Men", "activity": "Personal", "hours": 8.96, "period": "2024"},
+            {"year": 2024, "gender": "Men", "activity": "Leisure", "hours": 3.50, "period": "2024"}
         ]
     },
-    "facet": {"field": "metric", "type": "nominal", "columns": 3},
-    "spec": {
-        "mark": {"type": "bar", "opacity": 0.7},
-        "encoding": {
-            "x": {"field": "year", "type": "ordinal", "title": "Year"},
-            "y": {"field": "hours", "type": "quantitative", "title": "Hours per Week"},
-            "color": {"field": "type", "type": "nominal", "title": "Group", "scale": {"scheme": "accent"}},
-            "tooltip": [
-                {"field": "year", "type": "ordinal"},
-                {"field": "metric", "type": "nominal"},
-                {"field": "hours", "type": "quantitative", "format": ".1f"}
-            ]
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year",
+            "scale": {"paddingInner": 0.2},
+            "axis": {
+                "labelFontSize": 12,
+                "labelAngle": 0
+            }
         },
-        "width": 180,
-        "height": 280
+        "y": {
+            "field": "hours",
+            "type": "quantitative",
+            "title": "Hours per Day",
+            "scale": {"domain": [0, 10]},
+            "axis": {
+                "labelFontSize": 11,
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "gender",
+            "type": "nominal",
+            "title": "Gender",
+            "scale": {
+                "domain": ["Women", "Men"],
+                "range": ["#f06292", "#42a5f5"]
+            },
+            "legend": {
+                "title": {
+                    "text": "Gender",
+                    "fontSize": 12,
+                    "fontWeight": "bold"
+                },
+                "labelFontSize": 11
+            }
+        },
+        "facet": {
+            "field": "activity",
+            "type": "nominal",
+            "title": "Activity",
+            "columns": 3
+        },
+        "strokeDash": {
+            "field": "gender",
+            "type": "nominal",
+            "scale": {
+                "domain": ["Women", "Men"],
+                "range": [[0], [4, 4]]
+            },
+            "legend": null
+        },
+        "tooltip": [
+            {"field": "year", "type": "ordinal", "title": "Year"},
+            {"field": "activity", "type": "nominal", "title": "Activity"},
+            {"field": "gender", "type": "nominal", "title": "Gender"},
+            {"field": "hours", "type": "quantitative", "title": "Hours/Day", "format": ".2f"}
+        ]
+    },
+    "width": 250,
+    "height": 250,
+    "config": {
+        "mark": {"point": true, "opacity": 0.8},
+        "view": {"continuousWidth": 250, "continuousHeight": 250},
+        "axis": {
+            "grid": true,
+            "gridOpacity": 0.1
+        },
+        "title": {
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "offset": 15
+        }
     }
 };
 
