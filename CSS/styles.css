@@ -737,7 +737,6 @@ select.form-control {
     format('woff2');
 }
 
-/* END PERPLEXITY DESIGN SYSTEM */
 /* ============================================
    GENERAL STYLES
    ============================================ */
@@ -868,8 +867,16 @@ nav a.active {
         transform: scale(1);
     }
     to {
-        transform: scale(1.05);
+        transform: scale(1.35);
     }
+}
+
+/* Watermark effect for background image */
+.hero-image.hero-watermark {
+  opacity: 0.7;
+  filter: brightness(0.6) saturate(0.7);
+  transition: opacity var(--duration-normal) var(--ease-standard),
+    filter var(--duration-normal) var(--ease-standard);
 }
 
 .hero-overlay {
