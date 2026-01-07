@@ -241,46 +241,113 @@ const spec_project_2 = {
 
 const spec_project_3 = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Gender Gaps in Unpaid Work - Peru vs UK 2024",
+    "title": {
+        "text": "Gender Gaps in Unpaid Work: Household vs Care Work (Peru vs UK 2024)",
+        "subtitle": ["Decomposition of women's disproportionate unpaid labor burden"],
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "anchor": "start",
+        "color": "#667eea"
+    },
     "data": {
         "values": [
-            {"country": "Peru", "gender": "Women", "component": "Household", "hours": 28.2},
-            {"country": "Peru", "gender": "Women", "component": "Care", "hours": 13.6},
-            {"country": "Peru", "gender": "Women", "component": "Voluntary", "hours": 8.0},
+            // PERU DATA - HOUSEHOLD
+            {"country": "🇵🇪 Peru", "unpaid_type": "Household", "gender": "Women", "hours": 2.55, "percentage": 65.9, "category": "Household"},
+            {"country": "🇵🇪 Peru", "unpaid_type": "Household", "gender": "Men", "hours": 1.34, "percentage": 34.1, "category": "Household"},
             
-            {"country": "Peru", "gender": "Men", "component": "Household", "hours": 11.5},
-            {"country": "Peru", "gender": "Men", "component": "Care", "hours": 8.7},
-            {"country": "Peru", "gender": "Men", "component": "Voluntary", "hours": 5.5},
+            // PERU DATA - CARE
+            {"country": "🇵🇪 Peru", "unpaid_type": "Care", "gender": "Women", "hours": 1.95, "percentage": 61.1, "category": "Care"},
+            {"country": "🇵🇪 Peru", "unpaid_type": "Care", "gender": "Men", "hours": 1.24, "percentage": 38.9, "category": "Care"},
             
-            {"country": "UK", "gender": "Women", "component": "Household", "hours": 16.0},
-            {"country": "UK", "gender": "Women", "component": "Care", "hours": 13.0},
-            {"country": "UK", "gender": "Women", "component": "Voluntary", "hours": 3.0},
+            // PERU TOTAL UNPAID
+            {"country": "🇵🇪 Peru", "unpaid_type": "Total Unpaid", "gender": "Women", "hours": 4.50, "percentage": 63.8, "category": "Total Unpaid"},
+            {"country": "🇵🇪 Peru", "unpaid_type": "Total Unpaid", "gender": "Men", "hours": 2.58, "percentage": 36.2, "category": "Total Unpaid"},
             
-            {"country": "UK", "gender": "Men", "component": "Household", "hours": 10.0},
-            {"country": "UK", "gender": "Men", "component": "Care", "hours": 8.0},
-            {"country": "UK", "gender": "Men", "component": "Voluntary", "hours": 2.0}
+            // UK DATA - HOUSEHOLD
+            {"country": "🇬🇧 UK", "unpaid_type": "Household", "gender": "Women", "hours": 2.29, "percentage": 62.9, "category": "Household"},
+            {"country": "🇬🇧 UK", "unpaid_type": "Household", "gender": "Men", "hours": 1.35, "percentage": 37.1, "category": "Household"},
+            
+            // UK DATA - CARE
+            {"country": "🇬🇧 UK", "unpaid_type": "Care", "gender": "Women", "hours": 1.27, "percentage": 66.1, "category": "Care"},
+            {"country": "🇬🇧 UK", "unpaid_type": "Care", "gender": "Men", "hours": 0.65, "percentage": 33.9, "category": "Care"},
+            
+            // UK TOTAL UNPAID
+            {"country": "🇬🇧 UK", "unpaid_type": "Total Unpaid", "gender": "Women", "hours": 3.56, "percentage": 63.6, "category": "Total Unpaid"},
+            {"country": "🇬🇧 UK", "unpaid_type": "Total Unpaid", "gender": "Men", "hours": 2.00, "percentage": 36.4, "category": "Total Unpaid"}
         ]
     },
     "mark": "bar",
     "encoding": {
-        "x": {"field": "country", "type": "nominal", "title": "Country"},
-        "y": {"field": "hours", "type": "quantitative", "title": "Hours per Week", "stack": "normalize"},
-        "color": {
-            "field": "component",
+        "x": {
+            "field": "unpaid_type",
             "type": "nominal",
-            "title": "Work Type",
-            "scale": {"scheme": "category10"}
+            "title": "Unpaid Work Type",
+            "sort": ["Household", "Care", "Total Unpaid"],
+            "axis": {
+                "labelFontSize": 12,
+                "labelAngle": -30,
+                "labelAnchor": "end",
+                "labelBaseline": "top"
+            }
+        },
+        "y": {
+            "field": "hours",
+            "type": "quantitative",
+            "title": "Hours per Day",
+            "scale": {"domain": [0, 5]},
+            "axis": {
+                "labelFontSize": 11,
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "gender",
+            "type": "nominal",
+            "title": "Gender",
+            "scale": {
+                "domain": ["Women", "Men"],
+                "range": ["#f06292", "#42a5f5"]
+            },
+            "legend": {
+                "title": {
+                    "text": "Gender",
+                    "fontSize": 12,
+                    "fontWeight": "bold"
+                },
+                "labelFontSize": 11,
+                "symbolSize": 200
+            }
+        },
+        "facet": {
+            "field": "country",
+            "type": "nominal",
+            "title": "Country",
+            "align": "all"
         },
         "xOffset": {"field": "gender"},
         "tooltip": [
-            {"field": "country", "type": "nominal"},
-            {"field": "gender", "type": "nominal"},
-            {"field": "component", "type": "nominal"},
-            {"field": "hours", "type": "quantitative", "format": ".1f"}
+            {"field": "country", "type": "nominal", "title": "Country"},
+            {"field": "unpaid_type", "type": "nominal", "title": "Unpaid Work Type"},
+            {"field": "gender", "type": "nominal", "title": "Gender"},
+            {"field": "hours", "type": "quantitative", "title": "Hours/Day", "format": ".2f"},
+            {"field": "percentage", "type": "quantitative", "title": "% of Total", "format": ".1f%"}
         ]
     },
-    "width": 550,
-    "height": 350
+    "width": 400,
+    "height": 380,
+    "config": {
+        "mark": {"opacity": 0.85},
+        "view": {"continuousWidth": 400, "continuousHeight": 380},
+        "axis": {
+            "grid": true,
+            "gridOpacity": 0.1
+        },
+        "title": {
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "offset": 15
+        }
+    }
 };
 
 // ============================================
