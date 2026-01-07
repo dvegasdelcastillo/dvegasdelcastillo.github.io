@@ -138,11 +138,13 @@
         </p>
     </footer>
 
-    <!-- Load Vega-Lite specifications FIRST -->
-    <script src="js/vega_specs.js"></script>
-    <!-- Then load main.js (if exists) -->
+    <!-- CORRECTED: Load scripts in correct order with correct names -->
+    <!-- Step 1: Load Vega-Lite specifications FIRST (note: vega-specs.js with HYPHEN) -->
+    <script src="js/vega-specs.js"></script>
+    
+    <!-- Step 2: Load main.js for any global scripts -->
     <script src="js/main.js"></script>
-    <!-- Finally load chart embedding -->
+    
+    <!-- Step 3: Finally load chart embedding (note: project-charts.js with HYPHEN, not "chats") -->
     <script src="js/project-charts.js"></script>
 </body>
-</html>
