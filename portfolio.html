@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio – PP434 Coding Challenges</title>
-    <link rel="stylesheet" href="CSS/styles.css">
+    <title>Portfolio - David Vegas Del Castillo</title>
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -13,7 +13,7 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Portfolio</div>
+                <a href="index.html" class="logo">David Vegas</a>
                 <nav>
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="portfolio.html" class="nav-link active">Portfolio</a>
@@ -24,90 +24,121 @@
     </header>
 
     <main>
-        <div class="container">
-            <section id="portfolio">
+        <section class="portfolio-section">
+            <div class="container">
                 <div class="portfolio-intro">
-                    <h2>Portfolio Challenges (CC1-CC10)</h2>
-                    <p>The portfolio comprises 10 coding challenges (CC1-CC10), each demonstrating specific technical skills and resulting in data visualizations. Each challenge is worth 2 points (20 points total). Below are my completed challenges:</p>
+                    <h1>Portfolio</h1>
+                    <p>10 Coding Challenges demonstrating skills in data visualisation, web scraping, API integration, interactive dashboards, and machine learning applications.</p>
                 </div>
 
-                <!-- CC1: Hosting -->
+                <!-- CC1: Simple Charts -->
                 <div class="challenge-container">
-                    <h3>CC1: Hosting - Display Charts in Your Site</h3>
-                    <p>Set up GitHub Pages and embed live Vega-Lite visualizations using vegaEmbed function.</p>
+                    <div class="challenge-header">
+                        <h2>CC1: Simple Charts</h2>
+                        <p class="challenge-desc">Creating basic visualizations using Vega-Lite with UK economic data</p>
+                    </div>
                     <div class="chart-grid">
                         <div class="chart-item">
-                            <h4>Chart 1: UK GDP Growth</h4>
+                            <h4>UK GDP Growth</h4>
                             <div id="viz-cc1-1"></div>
                         </div>
                         <div class="chart-item">
-                            <h4>Chart 2: Inflation Trends</h4>
+                            <h4>Inflation Rate</h4>
                             <div id="viz-cc1-2"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- CC2: Building -->
+                <!-- CC2: Interactivity -->
                 <div class="challenge-container">
-                    <h3>CC2: Building - Create Your Own Visualisations</h3>
-                    <p>Create custom charts using Economics Observatory data hub or other sources.</p>
+                    <div class="challenge-header">
+                        <h2>CC2: Interactive Charts</h2>
+                        <p class="challenge-desc">Adding interactivity and selection to visualizations</p>
+                    </div>
                     <div class="chart-grid">
                         <div class="chart-item">
-                            <h4>Chart 3: Custom Analysis 1</h4>
+                            <h4>Interactive Bar Chart</h4>
                             <div id="viz-cc2-1"></div>
                         </div>
                         <div class="chart-item">
-                            <h4>Chart 4: Custom Analysis 2</h4>
+                            <h4>Scatter Plot Analysis</h4>
                             <div id="viz-cc2-2"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- CC3: Debate -->
+                <!-- CC3: Advanced Analysis -->
                 <div class="challenge-container">
-                    <h3>CC3: Debate - Use Visualisation in Policy Commentary</h3>
-                    <p><strong>Policy Topic (≤25 words):</strong> Education quality and funding inequality in Latin America affect long-term economic development and social mobility.</p>
+                    <div class="challenge-header">
+                        <h2>CC3: Advanced Analysis</h2>
+                        <p class="challenge-desc">Complex visualizations exploring relationships between variables</p>
+                    </div>
                     <div class="chart-grid">
                         <div class="chart-item">
-                            <h4>Chart 5: Supporting Evidence</h4>
+                            <h4>Education vs GDP</h4>
                             <div id="viz-cc3-1"></div>
-                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;"><em>Commentary (≤25 words): Countries with higher education spending demonstrate improved GDP growth and reduced inequality markers.</em></p>
                         </div>
                         <div class="chart-item">
-                            <h4>Chart 6: Comparative Analysis</h4>
+                            <h4>Regional Inequality</h4>
                             <div id="viz-cc3-2"></div>
-                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;"><em>Commentary (≤25 words): Regional disparities in education funding correlate with persistent developmental differences across Latin America.</em></p>
                         </div>
                     </div>
                 </div>
 
-                <!-- CC4-CC10 Placeholder -->
-                <div class="challenge-container" style="background: #f0f0f0; border-left: 5px solid #999;">
-                    <h3>CC4-CC10: In Progress</h3>
-                    <p>Remaining challenges in development:</p>
-                    <ul style="margin-left: 2rem; color: #666; line-height: 2;">
-                        <li><strong>CC4:</strong> Replication - Re-create and improve someone's chart</li>
-                        <li><strong>CC5:</strong> Accessing Data - Scraper and API integration</li>
-                        <li><strong>CC6:</strong> Loops - Build a dashboard with batch downloads</li>
-                        <li><strong>CC7:</strong> Maps - Base maps and choropleths (Scotland, Wales)</li>
-                        <li><strong>CC8:</strong> Big Data - Extract story from millions of prices</li>
-                        <li><strong>CC9:</strong> Two Interactive Charts - Advanced interactivity</li>
-                        <li><strong>CC10:</strong> Advanced Analysis and Machine Learning</li>
-                    </ul>
+                <!-- CC4: Replication -->
+                <div class="challenge-container">
+                    <div class="challenge-header">
+                        <h2>CC4: Chart Replication</h2>
+                        <p class="challenge-desc">Recreating and improving existing visualizations</p>
+                    </div>
+                    <div class="chart-grid">
+                        <div class="chart-item">
+                            <h4>Original Chart</h4>
+                            <p class="placeholder-text">Original chart image</p>
+                        </div>
+                        <div class="chart-item">
+                            <h4>Replicated Chart</h4>
+                            <div id="viz-cc4-1"></div>
+                        </div>
+                        <div class="chart-item">
+                            <h4>Improved Version</h4>
+                            <div id="viz-cc4-2"></div>
+                        </div>
+                    </div>
                 </div>
-            </section>
-        </div>
+
+                <!-- CC5-CC10: Coming Soon -->
+                <div class="challenge-container">
+                    <div class="challenge-header">
+                        <h2>CC5-CC10: Advanced Challenges</h2>
+                        <p class="challenge-desc">Web scraping, API integration, machine learning, and more...</p>
+                    </div>
+                    <div class="coming-soon">
+                        <p>🔄 Coming soon...</p>
+                        <ul>
+                            <li><strong>CC5:</strong> Web Scraping</li>
+                            <li><strong>CC6:</strong> API Integration</li>
+                            <li><strong>CC7:</strong> Mapping & Geospatial</li>
+                            <li><strong>CC8:</strong> Machine Learning Visualization</li>
+                            <li><strong>CC9:</strong> Interactive Dashboards</li>
+                            <li><strong>CC10:</strong> Advanced Analytics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 David Vegas Del Castillo. PP434 Data Science Portfolio.</p>
-        <p>Course: PP434 Automated Data Visualisation for Policymaking | LSE</p>
+        <p>&copy; 2025-2026 David Vegas Del Castillo | PP434 - LSE</p>
         <p>
             <a href="https://www.linkedin.com/in/david-vegas/" target="_blank">LinkedIn</a> | 
-            <a href="https://github.com/dvegasdelcastillo" target="_blank">GitHub</a>
+            <a href="https://github.com/dvegasdelcastillo" target="_blank">GitHub</a> | 
+            <a href="mailto:d.vegas-del-castillo@lse.ac.uk">Email</a>
         </p>
     </footer>
 
+    <script src="js/main.js"></script>
     <script src="js/portfolio-charts.js"></script>
 </body>
 </html>

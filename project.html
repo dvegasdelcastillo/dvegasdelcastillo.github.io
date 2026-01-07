@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project – Use of Time in Peru and UK</title>
-    <link rel="stylesheet" href="CSS/styles.css">
+    <title>Project - David Vegas Del Castillo</title>
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -13,7 +13,7 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Project</div>
+                <a href="index.html" class="logo">David Vegas</a>
                 <nav>
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="portfolio.html" class="nav-link">Portfolio</a>
@@ -24,111 +24,121 @@
     </header>
 
     <main>
-        <div class="container">
-            <section id="project">
-                <div class="project-header">
-                    <h2>Project: Use of Time in Peru (2010-2024) and UK (2024)</h2>
-                    <p style="font-size: 1.1rem; color: #666; margin-top: 1.5rem;">An empirical analysis examining temporal patterns, leisure inequality, and policy implications across two distinct economies and time periods.</p>
+        <section class="project-section">
+            <div class="container">
+                <div class="project-intro">
+                    <h1>Final Project</h1>
+                    <h2>Use of Time in Peru (2010-2024) and UK (2024)</h2>
+                    <p>An in-depth analysis of time use patterns across countries and years, examining how people allocate their time to different activities and how this has changed over time.</p>
                 </div>
 
-                <div class="project-section">
-                    <h3>1. Aims</h3>
-                    <p>This project investigates how time allocation patterns differ across populations and economic contexts. Specifically, I examine:</p>
-                    <ul style="margin-left: 2rem; color: #666; line-height: 1.8;">
-                        <li><strong>Temporal Patterns in Peru (2010-2024):</strong> How have household time-use patterns evolved over 14 years? Do leisure inequalities persist?</li>
-                        <li><strong>UK 2024 Benchmark:</strong> How do current UK time-use patterns compare to Peru's trends?</li>
-                        <li><strong>Policy Implications:</strong> What insights can inform policy on work-life balance, childcare, and inequality?</li>
-                    </ul>
-                </div>
-
-                <div class="project-section">
-                    <h3>2. Data</h3>
-                    <p><strong>Peru Time-Use Survey (ENUT 2010):</strong> National survey of household time allocation, covering work, leisure, care activities.</p>
-                    <p><strong>Peru Updated Data (2024):</strong> Latest INEI data on contemporary time-use patterns.</p>
-                    <p><strong>UK Time Use Survey (2024):</strong> Office for National Statistics time-use data for comparative analysis.</p>
-                    <div class="code-reference">
-                        Data sources: INEI Peru, ONS UK<br>
-                        Access method: Public repositories, API calls where available<br>
-                        Format: CSV, JSON<br>
+                <!-- PROJECT OVERVIEW -->
+                <div class="project-overview">
+                    <div class="overview-card">
+                        <h3>📊 Data</h3>
+                        <p>Time use surveys from Peru (2010, 2024) and UK (2024), containing information on how individuals spend their time across various activities.</p>
+                    </div>
+                    <div class="overview-card">
+                        <h3>🎯 Objectives</h3>
+                        <p>Analyze temporal patterns, compare countries and years, identify demographic disparities, and visualize trends in work, care, and leisure time.</p>
+                    </div>
+                    <div class="overview-card">
+                        <h3>📈 Methods</h3>
+                        <p>Descriptive analysis, comparative visualizations, demographic breakdowns, and time allocation patterns using Vega-Lite.</p>
                     </div>
                 </div>
 
-                <div class="project-section">
-                    <h3>3. Tools & Methodology</h3>
-                    <p><strong>Data Cleaning & Preparation:</strong> Python (Pandas) for data wrangling, transformation to tidy format.</p>
-                    <p><strong>Analysis Approach:</strong></p>
-                    <ul style="margin-left: 2rem; color: #666; line-height: 1.8;">
-                        <li>Descriptive statistics on time allocation by activity and demographic</li>
-                        <li>Temporal trend analysis (2010 vs 2024)</li>
-                        <li>Inequality measures (Gini coefficients on leisure time)</li>
-                        <li>Comparative analysis (Peru vs UK)</li>
-                        <li>Advanced analytics: correlation analysis, regression on leisure determinants</li>
-                    </ul>
-                    <p style="margin-top: 1.5rem;"><strong>Visualization:</strong> Vega-Lite for interactive, publication-ready charts with clear policy narratives.</p>
-                </div>
-
-                <div class="project-section">
-                    <h3>4. Key Visualizations</h3>
-                    <p>The following visualizations tell the story of time-use evolution and inequality:</p>
-                    <div class="project-viz-grid">
-                        <div class="project-viz">
-                            <h4>Visualization 1: Time Allocation by Activity - Peru 2010 vs 2024</h4>
-                            <div id="viz-project-1"></div>
-                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;">Stacked bar chart showing how Peruvians allocate daily time across work, leisure, care, and personal maintenance.</p>
-                        </div>
-                        <div class="project-viz">
-                            <h4>Visualization 2: Leisure Time Inequality - Gini Coefficient Trend</h4>
-                            <div id="viz-project-2"></div>
-                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;">Line chart tracking inequality in leisure time distribution over 14 years, with demographic breakdowns.</p>
-                        </div>
-                        <div class="project-viz">
-                            <h4>Visualization 3: Gender Gaps in Unpaid Care Work</h4>
-                            <div id="viz-project-3"></div>
-                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;">Comparative visualization of unpaid care work burden by gender in Peru and UK.</p>
-                        </div>
-                        <div class="project-viz">
-                            <h4>Visualization 4: Peru vs UK - Time Use Comparison 2024</h4>
-                            <div id="viz-project-4"></div>
-                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;">Side-by-side comparison of time allocation patterns in two distinct economies.</p>
-                        </div>
-                        <div class="project-viz">
-                            <h4>Visualization 5: Interactive Dashboard - Demographic Analysis</h4>
-                            <div id="viz-project-5"></div>
-                            <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;">Interactive chart allowing exploration of time-use patterns by age, education, and employment status.</p>
-                        </div>
+                <!-- VISUALIZATION 1 -->
+                <div class="visualization-container">
+                    <div class="viz-header">
+                        <h2>Visualization 1: Time Allocation by Activity</h2>
+                        <p class="viz-desc">Distribution of daily hours across major activity categories</p>
+                    </div>
+                    <div class="viz-content">
+                        <div id="viz-project-1"></div>
                     </div>
                 </div>
 
-                <div class="project-section">
-                    <h3>5. Conclusions & Policy Implications</h3>
-                    <p>This analysis reveals significant patterns in how time is allocated across different populations. Key findings suggest:</p>
-                    <ul style="margin-left: 2rem; color: #666; line-height: 1.8;">
-                        <li><strong>Persistent Inequality:</strong> Leisure time remains unequally distributed, particularly among women and lower-income households.</li>
-                        <li><strong>Structural Change:</strong> Peru's time-use patterns show modest shifts toward greater leisure formalization between 2010 and 2024.</li>
-                        <li><strong>UK Comparison:</strong> Developed economy patterns show different constraints, but similar gender-based inequities.</li>
-                        <li><strong>Policy Opportunities:</strong> Addressing time poverty requires multi-sector coordination on work regulation, childcare infrastructure, and cultural norms.</li>
-                    </ul>
+                <!-- VISUALIZATION 2 -->
+                <div class="visualization-container">
+                    <div class="viz-header">
+                        <h2>Visualization 2: Peru vs UK Comparison</h2>
+                        <p class="viz-desc">Comparative analysis of time use patterns between countries</p>
+                    </div>
+                    <div class="viz-content">
+                        <div id="viz-project-2"></div>
+                    </div>
                 </div>
 
-                <div class="project-section">
-                    <h3>6. Technical Implementation</h3>
-                    <p><strong>Code Repository:</strong> <a href="https://github.com/dvegasdelcastillo/dvegasdelcastillo.github.io" target="_blank" style="color: #667eea;">View on GitHub</a></p>
-                    <p><strong>Data Processing Notebook:</strong> <a href="https://colab.research.google.com/INCLUYE_TU_NOTEBOOK" target="_blank" style="color: #667eea;">Google Colab Notebook</a></p>
-                    <p style="margin-top: 1rem; color: #666; font-size: 0.95rem;"><em>All code is open-source, documented, and designed for replication and extension by other researchers.</em></p>
+                <!-- VISUALIZATION 3 -->
+                <div class="visualization-container">
+                    <div class="viz-header">
+                        <h2>Visualization 3: Temporal Trends</h2>
+                        <p class="viz-desc">How time allocation has changed from 2010 to 2024 in Peru</p>
+                    </div>
+                    <div class="viz-content">
+                        <div id="viz-project-3"></div>
+                    </div>
                 </div>
-            </section>
-        </div>
+
+                <!-- VISUALIZATION 4 -->
+                <div class="visualization-container">
+                    <div class="viz-header">
+                        <h2>Visualization 4: Gender Gaps in Care Work</h2>
+                        <p class="viz-desc">Gender differences in care and domestic work across countries</p>
+                    </div>
+                    <div class="viz-content">
+                        <div id="viz-project-4"></div>
+                    </div>
+                </div>
+
+                <!-- VISUALIZATION 5 -->
+                <div class="visualization-container">
+                    <div class="viz-header">
+                        <h2>Visualization 5: Demographic Analysis</h2>
+                        <p class="viz-desc">Time use patterns by age groups and household composition</p>
+                    </div>
+                    <div class="viz-content">
+                        <div id="viz-project-5"></div>
+                    </div>
+                </div>
+
+                <!-- KEY FINDINGS -->
+                <div class="findings-section">
+                    <h2>Key Findings</h2>
+                    <div class="findings-grid">
+                        <div class="finding-card">
+                            <h3>💼 Work Time</h3>
+                            <p>Significant differences in paid work hours between Peru and UK, reflecting different labor market structures and economic development levels.</p>
+                        </div>
+                        <div class="finding-card">
+                            <h3>👨‍👩‍👧 Care Work</h3>
+                            <p>Persistent gender gaps in care and domestic work, with women dedicating substantially more time to unpaid care activities.</p>
+                        </div>
+                        <div class="finding-card">
+                            <h3>📚 Leisure Time</h3>
+                            <p>Leisure time patterns vary significantly by age and country, with implications for well-being and quality of life.</p>
+                        </div>
+                        <div class="finding-card">
+                            <h3>📊 Temporal Change</h3>
+                            <p>Notable shifts in time allocation over the 2010-2024 period in Peru, possibly reflecting economic and social changes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 David Vegas Del Castillo. PP434 Data Science Portfolio.</p>
-        <p>Course: PP434 Automated Data Visualisation for Policymaking | LSE</p>
+        <p>&copy; 2025-2026 David Vegas Del Castillo | PP434 - LSE</p>
         <p>
             <a href="https://www.linkedin.com/in/david-vegas/" target="_blank">LinkedIn</a> | 
-            <a href="https://github.com/dvegasdelcastillo" target="_blank">GitHub</a>
+            <a href="https://github.com/dvegasdelcastillo" target="_blank">GitHub</a> | 
+            <a href="mailto:d.vegas-del-castillo@lse.ac.uk">Email</a>
         </p>
     </footer>
 
+    <script src="js/main.js"></script>
     <script src="js/project-charts.js"></script>
 </body>
 </html>

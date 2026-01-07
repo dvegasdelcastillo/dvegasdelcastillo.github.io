@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>David Vegas Del Castillo – MPP Candidate</title>
-    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -13,7 +13,7 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">David Vegas Del Castillo</div>
+                <a href="index.html" class="logo">David Vegas</a>
                 <nav>
                     <a href="index.html" class="nav-link active">Home</a>
                     <a href="portfolio.html" class="nav-link">Portfolio</a>
@@ -24,60 +24,84 @@
     </header>
 
     <main>
-        <div class="container">
-            <section id="home" class="active">
-                <div class="hero">
-                    <h1>MPP Candidate</h1>
-                    <p>Welcome to my PP434 portfolio. I am a Master of Public Policy student at the London School of Economics with experience in impact evaluation and policy research. This site showcases my journey in the course PP434: Automated data visualisation and policy-relevant data analysis.</p>
+        <!-- HERO SECTION WITH BACKGROUND IMAGE -->
+        <section class="hero-section">
+            <div class="hero-background">
+                <img src="https://www.ytuqueplanes.com/imagenes//fotos/novedades/b-Macchupicchu-todo-lo-que-debes-conocer-antes-de-visitarlo.webp" alt="Machu Picchu" class="hero-image">
+                <div class="hero-overlay"></div>
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>David Vegas Del Castillo</h1>
+                    <p class="subtitle">Master of Public Policy | Data Science | Policy Research</p>
+                    <p class="hero-description">
+                        I am an <a href="https://www.lse.ac.uk/study-at-lse/graduate/master-of-public-policy">MPP</a> student at the 
+                        <a href="https://www.lse.ac.uk/">London School of Economics and Political Science</a> with experience in impact evaluation and policy research. 
+                        This site showcases my journey in <a href="https://www.lse.ac.uk/resources/calendar2025-2026/courseGuides/PP/2025_PP434.htm">PP434: Automated Data Visualisation for Policymaking</a>.
+                    </p>
                     
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/david-vegas/" target="_blank" rel="noopener noreferrer">
-                            🔗 LinkedIn
-                        </a>
-                        <a href="https://github.com/dvegasdelcastillo" target="_blank" rel="noopener noreferrer">
-                            💻 GitHub
-                        </a>
-                        <a href="https://github.com/dvegasdelcastillo/dvegasdelcastillo.github.io" target="_blank" rel="noopener noreferrer">
-                            📁 Repository
-                        </a>
+                        <a href="https://www.linkedin.com/in/david-vegas/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="https://github.com/dvegasdelcastillo" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://github.com/dvegasdelcastillo/dvegasdelcastillo.github.io" target="_blank" rel="noopener noreferrer">Repository</a>
                     </div>
+                </div>
+
+                <div class="hero-photo">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/e6dd53e8-389e-43d3-8e74-6d61340b4e5f" alt="David Vegas Del Castillo" class="profile-photo">
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-intro">
+                    <h2>About This Work</h2>
                 </div>
 
                 <div class="about-grid">
                     <div class="about-card">
-                        <h3>About This Portfolio</h3>
-                        <p>This portfolio demonstrates the way how I learned many kind of tools and programming languages during the PP434 journey. Through 10 coding challenges, I explore topics including API integration, web scraping, interactive charts, and machine learning applications to real-world datasets.</p>
+                        <h3>📊 Portfolio</h3>
+                        <p>10 weekly coding challenges demonstrating skills in data visualisation, web scraping, API integration, interactive dashboards, mapping, and machine learning applications.</p>
+                        <a href="portfolio.html" class="card-link">View Portfolio →</a>
                     </div>
+
                     <div class="about-card">
-                        <h3>The Course</h3>
-                        <p><strong>PP434 - Automated Data Visualisation for Policymaking</strong> (LSE, 0.5 unit). A comprehensive course on using data to guide policy decisions through programming, visualization, and automation of analysis workflows.</p>
+                        <h3>🔍 Project</h3>
+                        <p>An in-depth analysis of time use patterns in Peru (2010, 2024) and UK (2024), featuring comprehensive data visualisations and evidence-based insights.</p>
+                        <a href="project.html" class="card-link">View Project →</a>
                     </div>
                 </div>
 
-                <div class="about-grid mt-3">
-                    <div class="about-card">
-                        <h3>Skills</h3>
-                        <p>
-                            <strong>Languages:</strong> Python, JavaScript, HTML, CSS, Stata, R<br>
-                            <strong>Tools:</strong> Vega-Lite, APIs, Web Scraping, Google Colab<br>
-                            <strong>Methods:</strong> Data Visualization, API Integration, Machine Learning, Impact Evaluation
-                        </p>
-                    </div>
-                    <div class="about-card">
-                        <h3>Navigation</h3>
-                        <p>
-                            <strong>Portfolio:</strong> 10 coding challenges demonstrating technical skills<br>
-                            <strong>Project:</strong> Comprehensive analysis of time use patterns in Peru and UK
-                        </p>
+                <div class="skills-section">
+                    <h2>Skills & Tools</h2>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <h4>Languages</h4>
+                            <p>Python, JavaScript, HTML, CSS, Stata</p>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Data Tools</h4>
+                            <p>Vega-Lite, Google Colab, APIs, Web Scraping</p>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Methods</h4>
+                            <p>Data Visualization, Impact Evaluation, Policy Analysis</p>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Course</h4>
+                            <p>PP434 - Automated Data Visualisation for Policymaking</p>
+                        </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 David Vegas Del Castillo. PP434 Data Science Portfolio.</p>
-        <p>Course: PP434 Automated Data Visualisation for Policymaking | LSE</p>
+        <p>&copy; 2025-2026 David Vegas Del Castillo | PP434 - LSE</p>
         <p>
             <a href="https://www.linkedin.com/in/david-vegas/" target="_blank">LinkedIn</a> | 
             <a href="https://github.com/dvegasdelcastillo" target="_blank">GitHub</a> | 
