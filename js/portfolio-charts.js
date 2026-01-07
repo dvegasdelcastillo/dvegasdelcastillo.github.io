@@ -106,7 +106,10 @@ const spec_cc1_1 = {
   },
   "layer": [
     {
-      "data": {"name": "data-gdp-uk"},
+      "data": {
+        "url": "https://raw.githubusercontent.com/dvegasdelcastillo/dvegasdelcastillo.github.io/refs/heads/main/data/uk-gdp-1985-2024.csv",
+        "format": {"type": "csv"}
+      },
       "mark": {"type": "line", "point": true, "color": "#179FDB"},
       "encoding": {
         "x": {
@@ -137,50 +140,6 @@ const spec_cc1_1 = {
   ],
   "width": 440,
   "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json",
-  "datasets": {
-    "data-gdp-uk": [
-      {"Year": 1985, "GDP_Billions_GBP": 414.41, "GDP_Growth_Pct": null},
-      {"Year": 1986, "GDP_Billions_GBP": 446.62, "GDP_Growth_Pct": 7.8},
-      {"Year": 1987, "GDP_Billions_GBP": 496.12, "GDP_Growth_Pct": 11.1},
-      {"Year": 1988, "GDP_Billions_GBP": 555.59, "GDP_Growth_Pct": 11.9},
-      {"Year": 1989, "GDP_Billions_GBP": 614.51, "GDP_Growth_Pct": 10.6},
-      {"Year": 1990, "GDP_Billions_GBP": 668.92, "GDP_Growth_Pct": 8.9},
-      {"Year": 1991, "GDP_Billions_GBP": 705.45, "GDP_Growth_Pct": 5.5},
-      {"Year": 1992, "GDP_Billions_GBP": 730.56, "GDP_Growth_Pct": 3.6},
-      {"Year": 1993, "GDP_Billions_GBP": 769.14, "GDP_Growth_Pct": 5.3},
-      {"Year": 1994, "GDP_Billions_GBP": 809.47, "GDP_Growth_Pct": 5.2},
-      {"Year": 1995, "GDP_Billions_GBP": 850.18, "GDP_Growth_Pct": 5.0},
-      {"Year": 1996, "GDP_Billions_GBP": 911.19, "GDP_Growth_Pct": 7.2},
-      {"Year": 1997, "GDP_Billions_GBP": 953.95, "GDP_Growth_Pct": 4.7},
-      {"Year": 1998, "GDP_Billions_GBP": 998.50, "GDP_Growth_Pct": 4.7},
-      {"Year": 1999, "GDP_Billions_GBP": 1043.00, "GDP_Growth_Pct": 4.5},
-      {"Year": 2000, "GDP_Billions_GBP": 1105.00, "GDP_Growth_Pct": 5.9},
-      {"Year": 2001, "GDP_Billions_GBP": 1151.00, "GDP_Growth_Pct": 4.1},
-      {"Year": 2002, "GDP_Billions_GBP": 1195.00, "GDP_Growth_Pct": 3.8},
-      {"Year": 2003, "GDP_Billions_GBP": 1263.00, "GDP_Growth_Pct": 5.7},
-      {"Year": 2004, "GDP_Billions_GBP": 1327.00, "GDP_Growth_Pct": 5.1},
-      {"Year": 2005, "GDP_Billions_GBP": 1403.00, "GDP_Growth_Pct": 5.7},
-      {"Year": 2006, "GDP_Billions_GBP": 1478.00, "GDP_Growth_Pct": 5.3},
-      {"Year": 2007, "GDP_Billions_GBP": 1552.00, "GDP_Growth_Pct": 5.0},
-      {"Year": 2008, "GDP_Billions_GBP": 1602.00, "GDP_Growth_Pct": 3.2},
-      {"Year": 2009, "GDP_Billions_GBP": 1559.00, "GDP_Growth_Pct": -2.7},
-      {"Year": 2010, "GDP_Billions_GBP": 1616.00, "GDP_Growth_Pct": 3.7},
-      {"Year": 2011, "GDP_Billions_GBP": 1670.00, "GDP_Growth_Pct": 3.3},
-      {"Year": 2012, "GDP_Billions_GBP": 1722.00, "GDP_Growth_Pct": 3.1},
-      {"Year": 2013, "GDP_Billions_GBP": 1789.00, "GDP_Growth_Pct": 3.9},
-      {"Year": 2014, "GDP_Billions_GBP": 1875.00, "GDP_Growth_Pct": 4.8},
-      {"Year": 2015, "GDP_Billions_GBP": 1928.00, "GDP_Growth_Pct": 2.8},
-      {"Year": 2016, "GDP_Billions_GBP": 2005.00, "GDP_Growth_Pct": 4.0},
-      {"Year": 2017, "GDP_Billions_GBP": 2097.00, "GDP_Growth_Pct": 4.6},
-      {"Year": 2018, "GDP_Billions_GBP": 2172.00, "GDP_Growth_Pct": 3.6},
-      {"Year": 2019, "GDP_Billions_GBP": 2253.00, "GDP_Growth_Pct": 3.7},
-      {"Year": 2020, "GDP_Billions_GBP": 2125.00, "GDP_Growth_Pct": -5.7},
-      {"Year": 2021, "GDP_Billions_GBP": 2323.00, "GDP_Growth_Pct": 9.3},
-      {"Year": 2022, "GDP_Billions_GBP": 2581.00, "GDP_Growth_Pct": 11.1},
-      {"Year": 2023, "GDP_Billions_GBP": 2752.00, "GDP_Growth_Pct": 6.6},
-      {"Year": 2024, "GDP_Billions_GBP": 2884.00, "GDP_Growth_Pct": 4.8}
-    ]
-  },
   "height": 250,
   "title": {
     "text": "UK Gross Domestic Product (GDP) 1985-2024",
@@ -190,31 +149,54 @@ const spec_cc1_1 = {
   }
 };
 
-// CC1 Chart 2: Inflation Trends
+// CC1 Chart 2: Unemploymet - 3 countries (from RDeconomist)
 const spec_cc1_2 = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "UK Inflation Rate",
-    "data": {
-        "values": [
-            {"month": "Jan 2022", "inflation": 4.4},
-            {"month": "Jul 2022", "inflation": 10.1},
-            {"month": "Jan 2023", "inflation": 10.5},
-            {"month": "Jul 2023", "inflation": 6.8},
-            {"month": "Jan 2024", "inflation": 4.0},
-            {"month": "Oct 2024", "inflation": 2.3}
-        ]
+
+    "description": "Chart that uses repeated layers to make multiple calls to an API",
+
+    "title": {
+      "text": "Unemployment - 3 Countries",
+      "subtitle":"% rate | Source: STATCAN, FRED, ONS via ECO API",
+      "subtitleFontStyle":"italic",
+      "subtitleFontSize":10,
+      "anchor": "start",
+      "color": "black"
     },
-    "mark": {"type": "area", "point": true},
+
+    "width":440,
+    "height":300,
+
+
     "encoding": {
-        "x": {"field": "month", "type": "ordinal", "axis": {"title": "Month"}},
-        "y": {"field": "inflation", "type": "quantitative", "axis": {"title": "Inflation %"}},
-        "tooltip": [
-            {"field": "month", "type": "ordinal"},
-            {"field": "inflation", "type": "quantitative"}
-        ]
+      "x": {"field": "date", "type": "temporal", "title": null, "axis": {"grid": false}},
+      "y": {"field": "value", "type": "quantitative", "title": null, "axis": {"grid": false}},
+      "color":{"field":"Country", "title":null, "legend":{"orient": "top-left"}}
     },
-    "width": 500,
-    "height": 300
+
+    "layer": [
+      
+      {"data": {"url": "https://api.economicsobservatory.com/gbr/unem?vega"},
+      "transform": [
+        {"calculate": "'United Kingdom'", "as": "Country"}
+      ],
+      "mark": {"type":"line", "color":"red"}
+      },
+
+      {"data": {"url": "https://api.economicsobservatory.com/can/unem?vega"},
+      "transform": [
+        {"calculate": "'Canada'", "as": "Country"}
+      ],
+      "mark": {"type":"line", "color":"green"}
+      },
+
+      {"data": {"url": "https://api.economicsobservatory.com/usa/unem?vega"},
+      "transform": [
+        {"calculate": "'United States'", "as": "Country"}
+      ],
+      "mark": {"type":"line", "color":"red"}
+      }
+    ]
 };
 
 // ============================================
@@ -223,50 +205,133 @@ const spec_cc1_2 = {
 
 // CC2 Chart 1: Custom Bar Chart
 const spec_cc2_1 = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Sample Custom Visualization",
-    "data": {
-        "values": [
-            {"category": "A", "value": 28},
-            {"category": "B", "value": 55},
-            {"category": "C", "value": 43},
-            {"category": "D", "value": 91},
-            {"category": "E", "value": 81},
-            {"category": "F", "value": 53}
-        ]
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Great Britain Inflation",
+    "anchor": "start",
+    "subtitle": "All items, % | Source: ONS through ECO API",
+    "fontSize": 14,
+    "subtitleFontSize": 12,
+    "color": "#000000",
+    "subtitleColor": "#000000"
+  },
+  "height": 340,
+  "width": 490,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "background": "#f5f5f5ff",
+  "view": {"fill": "#c1c5ffff", "strokeOpacity": 0},
+  "data": {
+    "url": "https://api.economicsobservatory.com/gbr/infl?vega",
+    "format": {"type": "json"}
+  },
+  "layer": [
+    {
+      "mark": {"type": "bar", "color": "#5a65cfc9", "opacity": 0.8},
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "axis": {"title": "", "grid": false}
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {"title": "Inflation (%)", "grid": true}
+        }
+      }
     },
-    "mark": "bar",
-    "encoding": {
-        "x": {"field": "category", "type": "ordinal"},
+    {
+      "mark": {"type": "rule", "color": "#999", "strokeWidth": 1},
+      "params": [
+        {
+          "name": "cursor",
+          "select": {
+            "type": "point",
+            "on": "mousemove",
+            "fields": ["date"],
+            "nearest": false
+          }
+        }
+      ],
+      "encoding": {
+        "x": {"field": "date", "type": "temporal"},
+        "opacity": {
+          "condition": {"param": "cursor", "empty": false, "value": 1},
+          "value": 0
+        }
+      }
+    },
+    {
+      "mark": {"type": "circle", "size": 80, "color": "#E6224B"},
+      "encoding": {
+        "x": {"field": "date", "type": "temporal"},
         "y": {"field": "value", "type": "quantitative"},
-        "color": {"field": "category", "type": "nominal", "legend": false}
-    },
-    "width": 500,
-    "height": 300
+        "opacity": {
+          "condition": {"param": "cursor", "empty": false, "value": 1},
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "date", "type": "temporal", "title": "Date", "format": "%B %Y"},
+          {"field": "value", "type": "quantitative", "title": "Inflation (%)", "format": ".2f"}
+        ]
+      }
+    }
+  ]
 };
 
 // CC2 Chart 2: Scatter Plot
 const spec_cc2_2 = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Sample Scatter Plot",
-    "data": {
-        "values": [
-            {"x": 10, "y": 28}, 
-            {"x": 20, "y": 55}, 
-            {"x": 30, "y": 43},
-            {"x": 40, "y": 91}, 
-            {"x": 50, "y": 81}, 
-            {"x": 60, "y": 53}
-        ]
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Exports",
+    "anchor": "start",
+    "subtitle": "Current Rs. in crore | ODI through ECO API",
+    "fontSize": 14,
+    "subtitleFontSize": 12,
+    "color": "#000000",
+    "subtitleColor": "#000000"
+  },
+  "height": "250",
+  "width": "container",
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "background": "#ffffff",
+  "view": {
+    "fill": "#ffffff",
+  },
+  "data": {
+    "url": "https://api.economicsobservatory.com/ind/expo?vega",
+    "format": {
+      "type": "json"
+    }
+  },
+  "mark": {
+    "type": "point",
+    "color": "#f4134d",
+    "strokeWidth": "2"
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "axis": {
+        "title": "",
+        "titleColor": "#122B39",
+        "grid": false
+      }
     },
-    "mark": "point",
-    "encoding": {
-        "x": {"field": "x", "type": "quantitative"},
-        "y": {"field": "y", "type": "quantitative"},
-        "size": {"value": 100}
-    },
-    "width": 500,
-    "height": 300
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "axis": {
+        "title": "",
+        "titleColor": "#122B39",
+        "grid": false
+      }
+    }
+  }
 };
 
 // ============================================
