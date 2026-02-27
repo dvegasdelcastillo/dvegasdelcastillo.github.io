@@ -28,104 +28,204 @@
             <div class="container">
                 <div class="portfolio-intro">
                     <h1>Portfolio</h1>
-                    <p>10 Coding Challenges demonstrating skills in data visualisation, web scraping, API integration, interactive dashboards, and machine learning applications.</p>
+                    <p>10 Coding Challenges demonstrating skills in data visualisation, web scraping, 
+                       API integration, interactive dashboards, and machine learning applications.</p>
                 </div>
 
-                <!-- CC1: Simple Charts -->
+                <!-- ============================== -->
+                <!-- CC1: HOSTING                   -->
+                <!-- ============================== -->
                 <div class="challenge-container">
                     <div class="challenge-header">
                         <h2>CC1: Hosting</h2>
-                        <p class="challenge-desc">Display charts in your own site</p>
+                        <p class="challenge-desc">Display charts in your own site using vegaEmbed</p>
                     </div>
                     <div class="chart-grid">
                         <div class="chart-item">
-                            <h4>UK GDP Growth</h4>
+                            <h4>UK GDP Growth (1985–2024)</h4>
                             <div id="viz-cc1-1"></div>
                         </div>
                         <div class="chart-item">
-                            <h4>Unemployement of Canada, UK and USA</h4>
+                            <h4>Unemployment: Canada, UK & USA</h4>
                             <div id="viz-cc1-2"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- CC2: Interactivity -->
+                <!-- ============================== -->
+                <!-- CC2: BUILDING                  -->
+                <!-- ============================== -->
                 <div class="challenge-container">
                     <div class="challenge-header">
                         <h2>CC2: Building</h2>
-                        <p class="challenge-desc">Create your own visualisations</p>
+                        <p class="challenge-desc">Create your own visualisations using the Economics Observatory Data Hub</p>
                     </div>
                     <div class="chart-grid">
                         <div class="chart-item">
-                            <h4>Interactive Bar Chart</h4>
+                            <h4>UK Inflation (CPI)</h4>
                             <div id="viz-cc2-1"></div>
                         </div>
                         <div class="chart-item">
-                            <h4>Scatter Plot Analysis</h4>
+                            <h4>Egypt Inflation (CPI)</h4>
                             <div id="viz-cc2-2"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- CC3: Advanced Analysis -->
+                <!-- ============================== -->
+                <!-- CC3: DEBATE                    -->
+                <!-- ============================== -->
                 <div class="challenge-container">
                     <div class="challenge-header">
-                        <h2>CC3: Advanced Analysis</h2>
-                        <p class="challenge-desc">Complex visualizations exploring relationships between variables</p>
+                        <h2>CC3: Debate</h2>
+                        <p class="challenge-desc">Use a visualisation in policy commentary</p>
                     </div>
+
+                    <!-- Policy statement (max 25 words) -->
+                    <p class="policy-statement">
+                        <strong>Policy topic:</strong> Higher public education spending is associated with stronger long-run 
+                        economic growth in Latin American and European economies.
+                    </p>
+
                     <div class="chart-grid">
                         <div class="chart-item">
-                            <h4>Education vs GDP</h4>
+                            <h4>Education Spending vs GDP Growth</h4>
                             <div id="viz-cc3-1"></div>
                         </div>
                         <div class="chart-item">
-                            <h4>Regional Inequality</h4>
+                            <h4>Education Spending Trends (% GDP)</h4>
                             <div id="viz-cc3-2"></div>
                         </div>
                     </div>
+
+                    <!-- Commentary (max 25 words) -->
+                    <p class="policy-commentary">
+                        <strong>Finding:</strong> The scatter shows no clear positive link; Chile and Germany 
+                        invest similarly yet grow differently — institutional quality may matter more.
+                    </p>
                 </div>
 
-                <!-- CC4: Replication -->
+                <!-- ============================== -->
+                <!-- CC4: REPLICATION               -->
+                <!-- ============================== -->
                 <div class="challenge-container">
                     <div class="challenge-header">
-                        <h2>CC4: Chart Replication</h2>
-                        <p class="challenge-desc">Recreating and improving existing visualizations</p>
+                        <h2>CC4: Replication</h2>
+                        <p class="challenge-desc">Re-create, then improve, someone else's chart</p>
                     </div>
-                    <div class="chart-grid">
+
+                    <div class="chart-grid cc4-grid">
+                        <!-- Original chart image -->
                         <div class="chart-item">
-                            <h4>Original Chart</h4>
-                            <p class="placeholder-text">Original chart image</p>
+                            <h4>Original Chart (The Economist)</h4>
+                            <img 
+                                src="assets/images/replication_original_chart.png" 
+                                alt="Original chart from The Economist showing UK unemployment rate"
+                                class="replication-img"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                            />
+                            <p class="img-fallback" style="display:none; color:#888; font-style:italic;">
+                                📌 Add your screenshot to <code>assets/images/replication_original_chart.png</code>
+                            </p>
                         </div>
+
+                        <!-- Replicated chart -->
                         <div class="chart-item">
-                            <h4>Replicated Chart</h4>
+                            <h4>Replicated Chart (Vega-Lite)</h4>
                             <div id="viz-cc4-1"></div>
                         </div>
+
+                        <!-- Improved chart -->
                         <div class="chart-item">
                             <h4>Improved Version</h4>
                             <div id="viz-cc4-2"></div>
+                            <p class="policy-commentary">
+                                <strong>Improvement:</strong> Added recession shading, removed chart junk, 
+                                improved colour contrast and axis labels for accessibility.
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- CC5-CC10: Coming Soon -->
+                <!-- ============================== -->
+                <!-- CC5: API + SCRAPER             -->
+                <!-- ============================== -->
                 <div class="challenge-container">
                     <div class="challenge-header">
-                        <h2>CC5-CC10: Advanced Challenges</h2>
-                        <p class="challenge-desc">Web scraping, API integration, machine learning, and more...</p>
+                        <h2>CC5: Accessing Data — API & Scraper</h2>
+                        <p class="challenge-desc">Live API chart and Python scraper pipeline</p>
                     </div>
                     <div class="coming-soon">
-                        <p>🔄 Coming soon...</p>
-                        <ul>
-                            <li><strong>CC5:</strong> Web Scraping</li>
-                            <li><strong>CC6:</strong> API Integration</li>
-                            <li><strong>CC7:</strong> Mapping & Geospatial</li>
-                            <li><strong>CC8:</strong> Machine Learning Visualization</li>
-                            <li><strong>CC9:</strong> Interactive Dashboards</li>
-                            <li><strong>CC10:</strong> Advanced Analytics</li>
-                        </ul>
+                        <p>🔄 In progress...</p>
                     </div>
                 </div>
-            </div>
+
+                <!-- ============================== -->
+                <!-- CC6: LOOPS / DASHBOARD         -->
+                <!-- ============================== -->
+                <div class="challenge-container">
+                    <div class="challenge-header">
+                        <h2>CC6: Loops — Dashboard</h2>
+                        <p class="challenge-desc">Batch download via loop, grid of 6 charts</p>
+                    </div>
+                    <div class="coming-soon">
+                        <p>🔄 In progress...</p>
+                    </div>
+                </div>
+
+                <!-- ============================== -->
+                <!-- CC7: MAPS                      -->
+                <!-- ============================== -->
+                <div class="challenge-container">
+                    <div class="challenge-header">
+                        <h2>CC7: Maps</h2>
+                        <p class="challenge-desc">Base map (Scotland) and choropleth (Wales)</p>
+                    </div>
+                    <div class="coming-soon">
+                        <p>🔄 In progress...</p>
+                    </div>
+                </div>
+
+                <!-- ============================== -->
+                <!-- CC8: BIG DATA                  -->
+                <!-- ============================== -->
+                <div class="challenge-container">
+                    <div class="challenge-header">
+                        <h2>CC8: Big Data</h2>
+                        <p class="challenge-desc">Extracting a story from millions of UK prices</p>
+                    </div>
+                    <div class="coming-soon">
+                        <p>🔄 In progress...</p>
+                    </div>
+                </div>
+
+                <!-- ============================== -->
+                <!-- CC9: INTERACTIVE CHARTS        -->
+                <!-- ============================== -->
+                <div class="challenge-container">
+                    <div class="challenge-header">
+                        <h2>CC9: Interactive Charts</h2>
+                        <p class="challenge-desc">Slider, dropdown, or clickable legend interactivity</p>
+                    </div>
+                    <div class="coming-soon">
+                        <p>🔄 In progress...</p>
+                    </div>
+                </div>
+
+                <!-- ============================== -->
+                <!-- CC10: ADVANCED + ML            -->
+                <!-- ============================== -->
+                <div class="challenge-container">
+                    <div class="challenge-header">
+                        <h2>CC10: Advanced Analysis & Machine Learning</h2>
+                        <p class="challenge-desc">Advanced analytics chart + sklearn ML pipeline</p>
+                    </div>
+                    <div class="coming-soon">
+                        <p>🔄 In progress...</p>
+                    </div>
+                </div>
+
+            </div><!-- /container -->
         </section>
     </main>
 
@@ -133,7 +233,7 @@
         <p>&copy; 2025-2026 David Vegas Del Castillo | PP434 - LSE</p>
         <p>
             <a href="https://www.linkedin.com/in/david-vegas/" target="_blank">ℹ️ LinkedIn</a> | 
-            <a href="https://github.com/dvegasdelcastillo" target="_blank">⚫ GitHub</a> | 
+            <a href="https://github.com/dvegasdelcastillo" target="_blank">💻 GitHub</a> | 
             <a href="mailto:d.vegas-del-castillo@lse.ac.uk">📧 Email</a>
         </p>
     </footer>
