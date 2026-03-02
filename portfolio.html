@@ -72,6 +72,7 @@
                     </div>
                 </div>
 
+                
                 <!-- ============================== -->
                 <!-- CC3: DEBATE                    -->
                 <!-- ============================== -->
@@ -81,28 +82,36 @@
                         <p class="challenge-desc">Use a visualisation in policy commentary</p>
                     </div>
 
-                    <!-- Policy statement (max 25 words) -->
+                    <!-- POLICY TOPIC — max 25 words, required by the task -->
                     <p class="policy-statement">
-                        <strong>Policy topic:</strong> Higher public education spending is associated with stronger long-run 
-                        economic growth in Latin American and European economies.
+                        Higher public education spending is associated with stronger 
+                        long-run economic growth in Latin American and European economies.
                     </p>
 
+                    <!-- Chart 1: scatter — directly tests the claim -->
                     <div class="chart-grid">
                         <div class="chart-item">
                             <h4>Education Spending vs GDP Growth</h4>
                             <div id="viz-cc3-1"></div>
+                            <!-- Commentary placed directly below the relevant chart -->
+                            <p class="policy-commentary">
+                                No clear positive link found; Chile and Germany invest 
+                                similarly yet grow differently — institutions may matter 
+                                more than spending alone.
+                            </p>
                         </div>
+
+                        <!-- Chart 2: trends — shows Peru's persistent underinvestment -->
                         <div class="chart-item">
-                            <h4>Education Spending Trends (% GDP)</h4>
+                            <h4>Education Spending Trends Over Time</h4>
                             <div id="viz-cc3-2"></div>
+                            <p class="policy-commentary">
+                                Peru consistently spends less than peers despite strong 
+                                growth — suggesting spending level alone does not 
+                                determine economic performance.
+                            </p>
                         </div>
                     </div>
-
-                    <!-- Commentary (max 25 words) -->
-                    <p class="policy-commentary">
-                        <strong>Finding:</strong> The scatter shows no clear positive link; Chile and Germany 
-                        invest similarly yet grow differently — institutional quality may matter more.
-                    </p>
                 </div>
 
                 <!-- ============================== -->
@@ -122,10 +131,11 @@
                                 src="assets/images/replication_original_chart.png" 
                                 alt="Original chart from The Economist showing UK unemployment rate"
                                 class="replication-img"
+                                style="width: 450px; height: 400px; object-fit: contain;"
                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
                             />
                             <p class="img-fallback" style="display:none; color:#888; font-style:italic;">
-                                📌 Add your screenshot to <code>assets/images/replication_original_chart.png</code>
+                                <!-- 📌 Add your screenshot to <code>assets/images/replication_original_chart.png</code>-->
                             </p>
                         </div>
 
