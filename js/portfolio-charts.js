@@ -5,6 +5,8 @@
 // ============================================================
 const spec_cc1_1 = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": 5,
+  "style": "cell",
   "width":  440,
   "height": 280,
   "title": {
@@ -22,7 +24,7 @@ const spec_cc1_1 = {
       "x": {
         "field": "Year", "type": "quantitative",
         "scale": {"domain": [1985, 2025], "nice": false},
-        "axis": {"title": "Year", "format": "d", "grid": false}
+        "axis": {"title": "", "format": "d", "grid": false}
       },
       "y": {
         "field": "GDP_Billions_GBP", "type": "quantitative",
@@ -173,28 +175,16 @@ const spec_cc2_2 = {
 const spec_cc3_1 = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Education Spending vs GDP Growth (2010–2022)",
+    "text": "Education Spending vs GDP Growth (2006–2024 average)",
     "subtitle": "Selected countries | Source: World Bank WDI",
     "anchor": "start", "fontSize": 15, "subtitleFontSize": 11
   },
   "width":  440,
   "height": 280,
   "data": {
-    // Source: World Bank WDI indicators SE.XPD.TOTL.GD.ZS (education)
-    // and NY.GDP.MKTP.KD.ZG (GDP growth), averages 2010-2022
-    // Verified at: https://data.worldbank.org
-    "values": [
-      {"country": "Peru",       "spending": 3.8, "gdp_growth": 4.1, "region": "Latam"},
-      {"country": "Chile",      "spending": 5.4, "gdp_growth": 3.2, "region": "Latam"},
-      {"country": "Colombia",   "spending": 4.5, "gdp_growth": 3.8, "region": "Latam"},
-      {"country": "Brazil",     "spending": 6.2, "gdp_growth": 1.5, "region": "Latam"},
-      {"country": "Mexico",     "spending": 4.9, "gdp_growth": 2.3, "region": "Latam"},
-      {"country": "UK",         "spending": 5.3, "gdp_growth": 1.8, "region": "Europe"},
-      {"country": "Germany",    "spending": 4.9, "gdp_growth": 1.4, "region": "Europe"},
-      {"country": "Finland",    "spending": 6.8, "gdp_growth": 1.1, "region": "Europe"},
-      {"country": "Portugal",   "spending": 5.0, "gdp_growth": 1.6, "region": "Europe"},
-      {"country": "South Korea","spending": 5.1, "gdp_growth": 3.2, "region": "Asia"}
-    ]
+    // Local :  C:\Users\David\...\data\educ_GDPg_mean06-24.csv
+    "url": "https://raw.githubusercontent.com/dvegasdelcastillo/dvegasdelcastillo.github.io/refs/heads/main/data/educ_GDPg_mean06-24.csv",
+    "format": {"type": "csv"}
   },
   "layer": [
     // Layer 1: scatter points, coloured by region
@@ -204,34 +194,54 @@ const spec_cc3_1 = {
         "x": {
           "field": "spending", "type": "quantitative",
           "title": "Public Education Spending (% of GDP)",
-          "scale": {"domain": [3, 8]},
+          "scale": {"domain": [0, 5]},
           "axis": {"grid": false}
         },
         "y": {
           "field": "gdp_growth", "type": "quantitative",
-          "title": "Avg. GDP Growth % (2010–2022)",
-          "scale": {"domain": [0, 5]}
+          "title": "Avg. GDP Growth % (2006–2024)",
+          "scale": {"domain": [2, 8]}
         },
         "color": {"field": "region", "type": "nominal", "title": "Region"},
         "tooltip": [
-          {"field": "country",    "title": "Country"},
+          {"field": "countryname",    "title": "Country"},
           {"field": "spending",   "format": ".1f", "title": "Education Spending (% GDP)"},
           {"field": "gdp_growth", "format": ".1f", "title": "Avg GDP Growth (%)"},
           {"field": "region",     "title": "Region"}
         ]
       }
     },
-    // Layer 2: country name labels above each point
+    
+    // Layer 2a: primera palabra del nombre (ej. "South", "United", "Peru")
     {
-      "mark": {"type": "text", "dy": -10, "fontSize": 10, "color": "#444"},
+      "mark": {"type": "text", "dy": -14, "fontSize": 8, "color": "#444", "fontWeight": "normal"},
+      "transform": [
+        // Extrae todo lo que está ANTES del primer espacio
+        // Si no hay espacio (ej. "Peru"), muestra el nombre completo
+        {"calculate": "split(datum.countryname, ' ')[0]", "as": "label_line1"}
+      ],
       "encoding": {
-        "x": {"field": "spending",   "type": "quantitative"},
-        "y": {"field": "gdp_growth", "type": "quantitative"},
-        "text": {"field": "country"}
+        "x":    {"field": "spending",    "type": "quantitative"},
+        "y":    {"field": "gdp_growth",  "type": "quantitative"},
+        "text": {"field": "label_line1"}
       }
     },
-    // Layer 3: linear regression line — shows direction of relationship
-    // A downward slope here REFUTES the policy claim
+
+    // Layer 2b: segunda palabra del nombre (ej. "Korea", vacío si nombre simple)
+    {
+      "mark": {"type": "text", "dy": -5, "fontSize": 8, "color": "#444", "fontWeight": "normal"},
+      "transform": [
+        // Extrae todo lo que está DESPUÉS del primer espacio
+        // Si no hay segunda palabra, devuelve string vacío — no muestra nada
+        {"calculate": "length(split(datum.countryname, ' ')) > 1 ? split(datum.countryname, ' ')[1] : ''", "as": "label_line2"}
+      ],
+      "encoding": {
+        "x":    {"field": "spending",    "type": "quantitative"},
+        "y":    {"field": "gdp_growth",  "type": "quantitative"},
+        "text": {"field": "label_line2"}
+      }
+    },
+    // Layer 3: regression line — shows direction of relationship
     {
       "mark": {
         "type": "line",
