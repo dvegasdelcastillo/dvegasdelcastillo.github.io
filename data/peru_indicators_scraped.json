@@ -1,0 +1,98 @@
+[
+  {
+    "indicator":"GDP Growth Rate",
+    "unit":29.9,
+    "reference":-25.9,
+    "country":"Peru",
+    "period":"Latest",
+    "value":0.6
+  },
+  {
+    "indicator":"Unemployment Rate",
+    "unit":16.5,
+    "reference":5.6,
+    "country":"Peru",
+    "period":"Latest",
+    "value":6.3
+  },
+  {
+    "indicator":"Inflation Rate",
+    "unit":12377.0,
+    "reference":-1.11,
+    "country":"Peru",
+    "period":"Latest",
+    "value":2.21
+  },
+  {
+    "indicator":"Interest Rate",
+    "unit":8.9,
+    "reference":0.25,
+    "country":"Peru",
+    "period":"Latest",
+    "value":4.25
+  },
+  {
+    "indicator":"Current Account to GDP",
+    "unit":3.31,
+    "reference":-9.5,
+    "country":"Peru",
+    "period":"Latest",
+    "value":2.2
+  },
+  {
+    "indicator":"Government Debt to GDP",
+    "unit":49.0,
+    "reference":20.0,
+    "country":"Peru",
+    "period":"Latest",
+    "value":32.8
+  },
+  {
+    "indicator":"GDP Growth Rate",
+    "unit":29.9,
+    "reference":-25.9,
+    "country":"Peru",
+    "period":"Previous",
+    "value":1.2
+  },
+  {
+    "indicator":"Unemployment Rate",
+    "unit":16.5,
+    "reference":5.6,
+    "country":"Peru",
+    "period":"Previous",
+    "value":5.9
+  },
+  {
+    "indicator":"Inflation Rate",
+    "unit":12377.0,
+    "reference":-1.11,
+    "country":"Peru",
+    "period":"Previous",
+    "value":1.7
+  },
+  {
+    "indicator":"Interest Rate",
+    "unit":8.9,
+    "reference":0.25,
+    "country":"Peru",
+    "period":"Previous",
+    "value":4.25
+  },
+  {
+    "indicator":"Current Account to GDP",
+    "unit":3.31,
+    "reference":-9.5,
+    "country":"Peru",
+    "period":"Previous",
+    "value":0.7
+  },
+  {
+    "indicator":"Government Debt to GDP",
+    "unit":49.0,
+    "reference":20.0,
+    "country":"Peru",
+    "period":"Previous",
+    "value":33.0
+  }
+]

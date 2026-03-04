@@ -146,13 +146,20 @@
                             <div id="viz-cc4-1"></div>
                         </div>
 
-                        <!-- Improved chart -->
+                        
+                        <!-- Improved chart con toggle buttons -->
                         <div class="chart-item">
                             <h4>Improved Version</h4>
+
+                            <!-- Custom legend buttons — controlled by JS -->
+                            <div id="cc4-legend" style="margin-bottom: 8px;"></div>
+
+                            <!-- Chart renders here -->
                             <div id="viz-cc4-2"></div>
+
                             <p class="policy-commentary">
-                                <strong>Improvement:</strong> Added recession shading, removed chart junk, 
-                                improved colour contrast and axis labels for accessibility.
+                                <strong>Improvements:</strong> Interactive sector toggle, zero reference line,
+                                peak/contraction annotations, accessible colours, area fill — reducing chartjunk.
                             </p>
                         </div>
                     </div>
@@ -163,11 +170,83 @@
                 <!-- ============================== -->
                 <div class="challenge-container">
                     <div class="challenge-header">
-                        <h2>CC5: Accessing Data — API & Scraper</h2>
-                        <p class="challenge-desc">Live API chart and Python scraper pipeline</p>
+                        <h2>CC5: Accessing Data — API &amp; Scraper</h2>
+                        <p class="challenge-desc">Live FRED API chart + Python scraper from Trading Economics</p>
                     </div>
-                    <div class="coming-soon">
-                        <p>🔄 In progress...</p>
+
+                    <!-- ── PART A: API ───────────────────────────────────── -->
+                    <div class="cc5-section">
+                        <h3>Part A — Live API: FRED</h3>
+
+                        <div class="chart-item">
+                            <h4>Peru PEN/USD Exchange Rate (2000–2024)</h4>
+                            <div id="viz-cc5-api"></div>
+                        </div>
+
+                        <!-- API documentation table — required by CC5 task -->
+                        <div class="api-description">
+                            <h4>🔌 API Documentation</h4>
+                            <table class="api-table">
+                                <tr>
+                                    <td><strong>Base URL</strong></td>
+                                    <td><code>https://api.stlouisfed.org/fred/series/observations</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>series_id</strong></td>
+                                    <td><code>FXRATEPEA618NUPN</code> — PEN per USD (Penn World Table, annual)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>api_key</strong></td>
+                                    <td><code>&api_key={YOUR_KEY}</code> — free key from fred.stlouisfed.org</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>file_type</strong></td>
+                                    <td><code>&file_type=json</code> — returns JSON array of observations</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>date range</strong></td>
+                                    <td><code>&observation_start=2000-01-01&observation_end=2024-12-31</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Full URL</strong></td>
+                                    <td>
+                                        <a href="https://fred.stlouisfed.org/series/FXRATEPEA618NUPN" target="_blank">
+                                            <code>fred.stlouisfed.org/series/FXRATEPEA618NUPN</code>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <!-- Commentary max 25 words -->
+                        <p class="policy-commentary">
+                            FRED API provides annual PEN/USD rates for Peru; the sol depreciated steadily,
+                            with notable acceleration during COVID-19 in 2020.
+                        </p>
+                    </div>
+
+                    <!-- ── PART B: SCRAPER ───────────────────────────────── -->
+                    <div class="cc5-section">
+                        <h3>Part B — Web Scraper: Trading Economics</h3>
+
+                        <div class="chart-item">
+                            <h4>Peru: Key Macroeconomic Indicators (Latest vs Previous)</h4>
+                            <div id="viz-cc5-scraper"></div>
+                        </div>
+
+                        <!-- Required: Colab link -->
+                        <p class="colab-link">
+                            📓 <strong>Google Colab notebook:</strong>
+                            <a href="https://colab.research.google.com/drive/1BwHQhPoo6QK80fienirXj476qkMzPbQg?usp=sharing" target="_blank">
+                                CC5 — FRED API + Trading Economics Scraper
+                            </a>
+                        </p>
+
+                        <!-- Commentary max 25 words -->
+                        <p class="policy-commentary">
+                            Scraped Trading Economics macroeconomic table for Peru using Python requests
+                            and pandas; data pivoted to tidy format for Vega-Lite visualisation.
+                        </p>
                     </div>
                 </div>
 

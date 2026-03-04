@@ -1,0 +1,68 @@
+[
+  {
+    "date":"2000-01-01",
+    "value":3.49,
+    "series":"PEN per USD",
+    "country":"Peru"
+  },
+  {
+    "date":"2001-01-01",
+    "value":3.506833333,
+    "series":"PEN per USD",
+    "country":"Peru"
+  },
+  {
+    "date":"2002-01-01",
+    "value":3.5165,
+    "series":"PEN per USD",
+    "country":"Peru"
+  },
+  {
+    "date":"2003-01-01",
+    "value":3.478467,
+    "series":"PEN per USD",
+    "country":"Peru"
+  },
+  {
+    "date":"2004-01-01",
+    "value":3.413175,
+    "series":"PEN per USD",
+    "country":"Peru"
+  },
+  {
+    "date":"2005-01-01",
+    "value":3.295841667,
+    "series":"PEN per USD",
+    "country":"Peru"
+  },
+  {
+    "date":"2006-01-01",
+    "value":3.274032503,
+    "series":"PEN per USD",
+    "country":"Peru"
+  },
+  {
+    "date":"2007-01-01",
+    "value":3.128044577,
+    "series":"PEN per USD",
+    "country":"Peru"
+  },
+  {
+    "date":"2008-01-01",
+    "value":2.924408333,
+    "series":"PEN per USD",
+    "country":"Peru"
+  },
+  {
+    "date":"2009-01-01",
+    "value":3.011508333,
+    "series":"PEN per USD",
+    "country":"Peru"
+  },
+  {
+    "date":"2010-01-01",
+    "value":2.825125,
+    "series":"PEN per USD",
+    "country":"Peru"
+  }
+]

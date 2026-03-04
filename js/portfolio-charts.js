@@ -393,38 +393,27 @@ const spec_cc3_2 = {
 };
 
 // ============================================================
-// CC4 — REPLICATION + IMPROVEMENT
-// Original: ONS "Contributions to monthly GDP growth"
-// Source: ONS GDP monthly estimate bulletins (Dec 2024–Dec 2025)
-// Values traced from ONS monthly bulletins:
-// ons.gov.uk/economy/grossdomesticproductgdp/bulletins/gdpmonthlyestimateuk
+// CC4 — REPLICATION + IMPROVEMENT v2
+// Changes:
+//   1. Sector stack order matches ONS original (services bottom)
+//   2. Improved chart has clickable legend to filter sectors
+//   3. vegaEmbed actions enabled → download PNG, SVG, CSV
 // ============================================================
 
-// ============================================================
-// DATA SOURCE: ONS GDP contributions CSV
-// Downloaded from:
-// ons.gov.uk/generator?uri=/economy/grossdomesticproductgdp/
-// bulletins/gdpmonthlyestimateuk/december2025/26b36ef2&format=csv
-// Cleaned (removed 4 header rows, standardised month labels)
-// and hosted at: /data/ons_gdp_contributions.csv
-// ============================================================
+const CSV_URL = "https://raw.githubusercontent.com/dvegasdelcastillo/dvegasdelcastillo.github.io/refs/heads/main/data/ons_gdp_contributions.csv";
 
-// Month order for correct x-axis sorting
-const monthOrder = [
+const MONTH_ORDER = [
   "Dec 2024","Jan 2025","Feb 2025","Mar 2025","Apr 2025",
   "May 2025","Jun 2025","Jul 2025","Aug 2025","Sep 2025",
   "Oct 2025","Nov 2025","Dec 2025"
 ];
 
-// Peak/trough annotation data (for improved chart)
-const annotations = [
-  {"month": "Mar 2025", "gdp": 0.7,  "text": "Peak: +0.7pp",    "dy": -13},
-  {"month": "Oct 2025", "gdp": -0.1, "text": "Contraction",     "dy":  14}
-];
+// Stack order: services at bottom, construction at top
+// (matches ONS original visual stacking)
+const SECTOR_ORDER = ["services", "production", "construction"];
 
-// Data URL — points to cleaned CSV in your GitHub repo
-const DATA_URL = "https://raw.githubusercontent.com/dvegasdelcastillo/dvegasdelcastillo.github.io/main/data/ons_gdp_contributions.csv";
 
+// ── CC4 Chart 1: REPLICATED ───────────────────────────────────
 const spec_cc4_1 = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
@@ -435,19 +424,27 @@ const spec_cc4_1 = {
   },
   "width": 440, "height": 280,
   "background": "#ffffff",
-  "data": {"url": DATA_URL, "format": {"type": "csv"}},
+  "data": {
+    "url": CSV_URL,
+    "format": {"type": "csv"}
+  },
   "transform": [
     {"fold": ["services", "production", "construction"],
-     "as":   ["sector", "contribution"]}
+     "as":   ["sector", "contribution"]},
+    {"calculate": "toNumber(datum.contribution)", "as": "contribution"},
+    {"calculate": "toNumber(datum.gdp)",          "as": "gdp"},
+    // Force stack order: assign numeric rank so Vega stacks in correct order
+    {"calculate": "datum.sector === 'services' ? 0 : datum.sector === 'production' ? 1 : 2",
+     "as": "sector_order"}
   ],
   "layer": [
-    // Stacked bars
+    // Stacked bars — order controlled via sort on color field
     {
       "mark": {"type": "bar"},
       "encoding": {
         "x": {
           "field": "month", "type": "ordinal", "title": null,
-          "sort": monthOrder,
+          "sort": MONTH_ORDER,
           "axis": {"labelAngle": -45, "labelFontSize": 9, "grid": false}
         },
         "y": {
@@ -457,13 +454,18 @@ const spec_cc4_1 = {
         },
         "color": {
           "field": "sector", "type": "nominal", "title": null,
+          "sort": SECTOR_ORDER,
           "scale": {
-            "domain": ["services", "production", "construction"],
+            "domain": SECTOR_ORDER,
             "range": ["#00B5CC", "#7B2D8B", "#8DB600"]
           },
-          "legend": {"orient": "top", "labelFontSize": 10,
-                     "labelExpr": "upper(slice(datum.label,0,1)) + slice(datum.label,1)"}
+          "legend": {
+            "orient": "top",
+            "labelFontSize": 10,
+            "labelExpr": "upper(slice(datum.label,0,1)) + slice(datum.label,1)"
+          }
         },
+        "order": {"field": "sector_order", "type": "quantitative"},
         "tooltip": [
           {"field": "month",        "title": "Month"},
           {"field": "sector",       "title": "Sector"},
@@ -475,117 +477,332 @@ const spec_cc4_1 = {
     {
       "mark": {"type": "line", "color": "#003087", "strokeWidth": 2},
       "encoding": {
-        "x": {"field": "month", "type": "ordinal", "sort": monthOrder},
+        "x": {"field": "month", "type": "ordinal", "sort": MONTH_ORDER},
         "y": {"field": "gdp",   "type": "quantitative"},
         "tooltip": [
           {"field": "month", "title": "Month"},
-          {"field": "gdp",   "format": ".2f", "title": "GDP (pp)"}
+          {"field": "gdp",   "format": ".1f", "title": "GDP (pp)"}
         ]
+      }
+    }
+  ],
+  "config": {"view": {"stroke": "#ccc"}}
+};
+
+
+// ============================================================
+// CC4 — IMPROVED: toggle sectors on/off via legend buttons
+// Clicking a sector button removes it entirely from the stack
+// ============================================================
+
+// Raw data (mirrors the CSV exactly)
+const RAW_DATA = [
+  {month:"Dec 2024", gdp:0.3,  services:0.31,  production:-0.07, construction:0.03},
+  {month:"Jan 2025", gdp:0.3,  services:0.39,  production:-0.08, construction:0.02},
+  {month:"Feb 2025", gdp:0.6,  services:0.52,  production:0.09,  construction:0.01},
+  {month:"Mar 2025", gdp:0.7,  services:0.48,  production:0.14,  construction:0.03},
+  {month:"Apr 2025", gdp:0.7,  services:0.4,   production:0.17,  construction:0.07},
+  {month:"May 2025", gdp:0.4,  services:0.3,   production:-0.05, construction:0.1 },
+  {month:"Jun 2025", gdp:0.2,  services:0.17,  production:-0.08, construction:0.08},
+  {month:"Jul 2025", gdp:0.1,  services:0.2,   production:-0.15, construction:0.04},
+  {month:"Aug 2025", gdp:0.1,  services:0.14,  production:-0.02, construction:0.02},
+  {month:"Sep 2025", gdp:0.1,  services:0.12,  production:-0.09, construction:0.02},
+  {month:"Oct 2025", gdp:-0.1, services:0.0,   production:-0.05, construction:-0.01},
+  {month:"Nov 2025", gdp:-0.1, services:0.02,  production:-0.01, construction:-0.06},
+  {month:"Dec 2025", gdp:0.1,  services:0.02,  production:0.16,  construction:-0.13}
+];
+
+const SECTORS = {
+  services:     {label: "Services",     color: "#179FDB", active: true},
+  production:   {label: "Production",   color: "#E6224B", active: true},
+  construction: {label: "Construction", color: "#00A767", active: true}
+};
+
+// Builds the Vega-Lite spec using only the active sectors
+function buildSpec(activeSectors) {
+  const foldFields = activeSectors; // only active ones
+
+  return {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Contributions to 3-month GDP Growth, UK (improved)",
+      "subtitle": [
+        "Click buttons above to show/hide sectors | Source: ONS GDP monthly estimate, Dec 2025",
+        "Improvements: sector toggle, zero line, annotations, accessible colours, area fill"
+      ],
+      "anchor": "start", "fontSize": 14, "subtitleFontSize": 10
+    },
+    "width": 440, "height": 280,
+    "data": {"values": RAW_DATA},
+    "transform": [
+      {"fold": foldFields, "as": ["sector", "contribution"]},
+      {"calculate": "toNumber(datum.contribution)", "as": "contribution"},
+      {
+        // Stack order: services=0, production=1, construction=2
+        "calculate": "datum.sector==='services'?0:datum.sector==='production'?1:2",
+        "as": "sector_order"
+      }
+    ],
+    "layer": [
+      // Zero line
+      {
+        "data": {"values": [{"y": 0}]},
+        "mark": {"type": "rule", "color": "#555", "strokeWidth": 1, "strokeDash": [4,3]},
+        "encoding": {"y": {"field": "y", "type": "quantitative"}}
+      },
+      // Stacked bars (only active sectors)
+      {
+        "mark": {"type": "bar", "opacity": 0.85},
+        "encoding": {
+          "x": {
+            "field": "month", "type": "ordinal", "title": null,
+            "sort": MONTH_ORDER,
+            "axis": {"labelAngle": -45, "labelFontSize": 9, "grid": false}
+          },
+          "y": {
+            "field": "contribution", "type": "quantitative",
+            "title": "Percentage point contribution", "stack": "zero",
+            "axis": {"grid": true, "gridOpacity": 0.2,
+                     "labelFontSize": 9, "tickCount": 6}
+          },
+          "color": {
+            "field": "sector", "type": "nominal", "title": null,
+            "sort": ["services","production","construction"],
+            "scale": {
+              "domain": ["services","production","construction"],
+              "range":  ["#179FDB","#E6224B","#00A767"]
+            },
+            "legend": null   // legend handled by HTML buttons below
+          },
+          "order": {"field": "sector_order", "type": "quantitative"},
+          "tooltip": [
+            {"field": "month",        "title": "Month"},
+            {"field": "sector",       "title": "Sector"},
+            {"field": "contribution", "format": ".2f", "title": "Contribution (pp)"}
+          ]
+        }
+      },
+      // GDP area fill
+      {
+        "mark": {"type": "area", "color": "#0063AF", "opacity": 0.08, "line": false},
+        "encoding": {
+          "x": {"field": "month", "type": "ordinal", "sort": MONTH_ORDER},
+          "y": {"field": "gdp",   "type": "quantitative", "stack": null}
+        }
+      },
+      // GDP line
+      {
+        "mark": {"type": "line", "color": "#0063AF", "strokeWidth": 2.5},
+        "encoding": {
+          "x": {"field": "month", "type": "ordinal", "sort": MONTH_ORDER},
+          "y": {"field": "gdp",   "type": "quantitative"},
+          "tooltip": [
+            {"field": "month", "title": "Month"},
+            {"field": "gdp",   "format": ".1f", "title": "GDP total (pp)"}
+          ]
+        }
+      },
+      // Annotation: peak
+      {
+        "data": {"values": [{"month": "Mar 2025", "gdp": 0.7}]},
+        "mark": {"type":"text","dy":-13,"fontSize":9,
+                 "color":"#0063AF","fontWeight":"bold","text":"Peak +0.7pp"},
+        "encoding": {
+          "x": {"field": "month", "type": "ordinal", "sort": MONTH_ORDER},
+          "y": {"field": "gdp",   "type": "quantitative"}
+        }
+      },
+      // Annotation: contraction
+      {
+        "data": {"values": [{"month": "Oct 2025", "gdp": -0.1}]},
+        "mark": {"type":"text","dy":14,"fontSize":9,
+                 "color":"#E6224B","fontWeight":"bold","text":"Contraction"},
+        "encoding": {
+          "x": {"field": "month", "type": "ordinal", "sort": MONTH_ORDER},
+          "y": {"field": "gdp",   "type": "quantitative"}
+        }
+      }
+    ],
+    "config": {"view": {"stroke": null}, "axis": {"domain": false}}
+  };
+}
+
+// Renders the custom legend buttons and re-embeds the chart
+function renderCC4Improved() {
+  // Build legend buttons
+  const legendEl = document.getElementById('cc4-legend');
+  if (legendEl) {
+    legendEl.innerHTML = Object.entries(SECTORS).map(([key, s]) => `
+      <button
+        id="btn-${key}"
+        onclick="toggleSector('${key}')"
+        style="
+          display: inline-flex; align-items: center; gap: 6px;
+          margin: 0 6px 6px 0; padding: 5px 12px;
+          border: 2px solid ${s.color};
+          border-radius: 20px; cursor: pointer; font-size: 12px;
+          background: ${s.active ? s.color : 'transparent'};
+          color: ${s.active ? '#fff' : s.color};
+          transition: all 0.2s;
+        "
+      >
+        <span style="
+          width:10px; height:10px; border-radius:50%;
+          background: ${s.active ? '#fff' : s.color};
+          display:inline-block;
+        "></span>
+        ${s.label}
+      </button>
+    `).join('');
+  }
+
+  // Get active sector keys
+  const active = Object.entries(SECTORS)
+    .filter(([, s]) => s.active)
+    .map(([key]) => key);
+
+  // Re-embed chart with updated spec
+  vegaEmbed('#viz-cc4-2', buildSpec(active), {
+    renderer: "svg",
+    actions: {export: true, source: false, compiled: false, editor: false}
+  });
+}
+
+// Toggle a sector on/off and re-render
+window.toggleSector = function(key) {
+  // Prevent deselecting all sectors
+  const activeCount = Object.values(SECTORS).filter(s => s.active).length;
+  if (SECTORS[key].active && activeCount === 1) return;
+
+  SECTORS[key].active = !SECTORS[key].active;
+  renderCC4Improved();
+};
+
+// Initial render once DOM is ready
+document.addEventListener('DOMContentLoaded', renderCC4Improved);
+
+// ============================================================
+// CC5 — PART A: FRED API chart (PEN/USD exchange rate)
+// Data downloaded via FRED API in Colab, stored in /data/
+// Series: FXRATEPEA618NUPN | Source: Penn World Table via FRED
+// ============================================================
+
+const spec_cc5_api = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Peru: PEN/USD Exchange Rate (2000–2024)",
+    "subtitle": [
+      "Peruvian Soles per 1 US Dollar | Annual average",
+      "Source: Penn World Table via FRED API | Series: FXRATEPEA618NUPN"
+    ],
+    "anchor": "start", "fontSize": 15, "subtitleFontSize": 11
+  },
+  "width": 460, "height": 280,
+  "data": {
+    "url": "https://raw.githubusercontent.com/dvegasdelcastillo/dvegasdelcastillo.github.io/main/data/peru_pen_usd_fred.json"
+  },
+  "layer": [
+    // Area fill — shows direction of depreciation
+    {
+      "mark": {"type": "area", "color": "#E6224B", "opacity": 0.1, "line": false},
+      "encoding": {
+        "x": {"field": "date", "type": "temporal", "title": null,
+              "axis": {"grid": false, "labelFontSize": 10}},
+        "y": {"field": "value", "type": "quantitative",
+              "title": "PEN per 1 USD",
+              "scale": {"domain": [2.5, 4.5]}}
+      }
+    },
+    // Line
+    {
+      "mark": {"type": "line", "color": "#E6224B", "strokeWidth": 2.5, "point": true},
+      "encoding": {
+        "x": {"field": "date", "type": "temporal"},
+        "y": {"field": "value", "type": "quantitative"},
+        "tooltip": [
+          {"field": "date",  "type": "temporal", "format": "%Y", "title": "Year"},
+          {"field": "value", "type": "quantitative", "format": ".3f", "title": "PEN per USD"}
+        ]
+      }
+    },
+    // Annotation: COVID depreciation peak
+    {
+      "data": {"values": [{"date": "2020-01-01", "value": 3.495, "label": "COVID-19\ndepreciation"}]},
+      "mark": {"type": "text", "dy": -15, "fontSize": 9,
+               "color": "#E6224B", "fontWeight": "bold"},
+      "encoding": {
+        "x":    {"field": "date",  "type": "temporal"},
+        "y":    {"field": "value", "type": "quantitative"},
+        "text": {"field": "label"}
       }
     }
   ]
 };
 
 
-const spec_cc4_2 = {
+// ============================================================
+// CC5 — PART B: Scraped chart (Trading Economics indicators)
+// Scraped from tradingeconomics.com/peru/indicators via Colab
+// ============================================================
+
+const spec_cc5_scraper = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Contributions to 3-month GDP Growth, UK (improved)",
+    "text": "Peru: Key Macroeconomic Indicators",
     "subtitle": [
-      "Stacked bars = sector contributions | Line = total GDP | Source: ONS",
-      "Improvements: zero line, direct labels, accessible colours, area fill"
+      "Latest vs Previous values | Source: Trading Economics (scraped via Python)",
+      "Data: tradingeconomics.com/peru/indicators"
     ],
-    "anchor": "start", "fontSize": 14, "subtitleFontSize": 10
+    "anchor": "start", "fontSize": 15, "subtitleFontSize": 11
   },
-  "width": 440, "height": 280,
-  "layer": [
-    // Zero reference line
-    {
-      "data": {"values": [{}]},
-      "mark": {"type": "rule", "color": "#666", "strokeWidth": 1, "strokeDash": [3,3]},
-      "encoding": {"y": {"datum": 0}}
+  "width": 460, "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/dvegasdelcastillo/dvegasdelcastillo.github.io/main/data/peru_indicators_scraped.json"
+  },
+  "mark": {"type": "bar", "opacity": 0.85},
+  "encoding": {
+    "y": {
+      "field": "indicator", "type": "nominal",
+      "title": null,
+      "sort": "-x",
+      "axis": {"labelFontSize": 10, "labelLimit": 200}
     },
-    // Stacked bars — accessible colours
-    {
-      "data": {"url": DATA_URL, "format": {"type": "csv"}},
-      "transform": [
-        {"fold": ["services", "production", "construction"],
-         "as":   ["sector", "contribution"]}
-      ],
-      "mark": {"type": "bar", "opacity": 0.85},
-      "encoding": {
-        "x": {
-          "field": "month", "type": "ordinal", "title": null,
-          "sort": monthOrder,
-          "axis": {"labelAngle": -45, "labelFontSize": 9, "grid": false}
-        },
-        "y": {
-          "field": "contribution", "type": "quantitative",
-          "title": "Percentage point contribution", "stack": "zero",
-          "axis": {"grid": true, "gridOpacity": 0.2, "labelFontSize": 9, "tickCount": 6}
-        },
-        "color": {
-          "field": "sector", "type": "nominal", "title": null,
-          "scale": {
-            "domain": ["services", "production", "construction"],
-            "range": ["#179FDB", "#E6224B", "#00A767"]
-          },
-          "legend": {"orient": "top", "labelFontSize": 10,
-                     "labelExpr": "upper(slice(datum.label,0,1)) + slice(datum.label,1)"}
-        },
-        "tooltip": [
-          {"field": "month",        "title": "Month"},
-          {"field": "sector",       "title": "Sector"},
-          {"field": "contribution", "format": ".2f", "title": "Contribution (pp)"}
-        ]
-      }
+    "x": {
+      "field": "value", "type": "quantitative",
+      "title": "Value",
+      "axis": {"grid": true, "gridOpacity": 0.2, "labelFontSize": 9}
     },
-    // GDP area fill
-    {
-      "data": {"url": DATA_URL, "format": {"type": "csv"}},
-      "mark": {"type": "area", "color": "#0063AF", "opacity": 0.08},
-      "encoding": {
-        "x": {"field": "month", "type": "ordinal", "sort": monthOrder},
-        "y": {"field": "gdp",   "type": "quantitative"}
-      }
+    "color": {
+      "field": "period", "type": "nominal",
+      "title": null,
+      "scale": {
+        "domain": ["Latest", "Previous"],
+        "range":  ["#179FDB", "#aaa"]
+      },
+      "legend": {"orient": "top", "labelFontSize": 10}
     },
-    // GDP line
-    {
-      "data": {"url": DATA_URL, "format": {"type": "csv"}},
-      "mark": {"type": "line", "color": "#0063AF", "strokeWidth": 2.5},
-      "encoding": {
-        "x": {"field": "month", "type": "ordinal", "sort": monthOrder},
-        "y": {"field": "gdp",   "type": "quantitative"},
-        "tooltip": [
-          {"field": "month", "title": "Month"},
-          {"field": "gdp",   "format": ".2f", "title": "GDP total (pp)"}
-        ]
-      }
-    },
-    // Annotations
-    {
-      "data": {"values": annotations},
-      "mark": {"type": "text", "fontSize": 9, "fontWeight": "bold"},
-      "encoding": {
-        "x":    {"field": "month", "type": "ordinal", "sort": monthOrder},
-        "y":    {"field": "gdp",   "type": "quantitative"},
-        "dy":   {"field": "dy"},
-        "text": {"field": "text"},
-        "color": {
-          "condition": {"test": "datum.gdp > 0", "value": "#0063AF"},
-          "value": "#E6224B"
-        }
-      }
-    }
-  ],
-  "config": {"view": {"stroke": null}, "axis": {"domain": false}}
+    "xOffset": {"field": "period"},
+    "tooltip": [
+      {"field": "indicator", "title": "Indicator"},
+      {"field": "period",    "title": "Period"},
+      {"field": "value",     "format": ".2f", "title": "Value"},
+      {"field": "unit",      "title": "Unit"},
+      {"field": "reference", "title": "Reference date"}
+    ]
+  }
 };
+
 
 // ============================================================
 // EMBED ALL CHARTS
 // ============================================================
 
-const embedOpts = {renderer: "svg", actions: false};
+const embedOpts = {renderer: "svg", actions: {
+    export:   true,   // PNG and SVG download
+    source:   true,   // view Vega-Lite spec
+    compiled: false,  // hide compiled Vega spec (too technical)
+    editor:   true    // open in Vega editor for exploration
+  }};
 
 vegaEmbed('#viz-cc1-1', spec_cc1_1, embedOpts);
 vegaEmbed('#viz-cc1-2', spec_cc1_2, embedOpts);
@@ -595,3 +812,6 @@ vegaEmbed('#viz-cc3-1', spec_cc3_1, embedOpts);
 vegaEmbed('#viz-cc3-2', spec_cc3_2, embedOpts);
 vegaEmbed('#viz-cc4-1', spec_cc4_1, embedOpts);
 vegaEmbed('#viz-cc4-2', spec_cc4_2, embedOpts);
+
+vegaEmbed('#viz-cc5-api',     spec_cc5_api,     embedOpts);
+vegaEmbed('#viz-cc5-scraper', spec_cc5_scraper, embedOpts);
