@@ -180,7 +180,7 @@ const spec_cc3_1 = {
     "anchor": "start", "fontSize": 15, "subtitleFontSize": 11
   },
   "width":  440,
-  "height": 280,
+  "height": 690,
   "data": {
     // Local :  C:\Users\David\...\data\educ_GDPg_mean06-24.csv
     "url": "https://raw.githubusercontent.com/dvegasdelcastillo/dvegasdelcastillo.github.io/refs/heads/main/data/educ_GDPg_mean06-24.csv",
@@ -194,13 +194,13 @@ const spec_cc3_1 = {
         "x": {
           "field": "spending", "type": "quantitative",
           "title": "Public Education Spending (% of GDP)",
-          "scale": {"domain": [0, 5]},
+          "scale": {"domain": [2, 8]},
           "axis": {"grid": false}
         },
         "y": {
           "field": "gdp_growth", "type": "quantitative",
           "title": "Avg. GDP Growth % (2006–2024)",
-          "scale": {"domain": [2, 8]}
+          "scale": {"domain": [0, 5]}
         },
         "color": {"field": "region", "type": "nominal", "title": "Region"},
         "tooltip": [
@@ -259,238 +259,326 @@ const spec_cc3_1 = {
 };
 
 
-// ── CC3 Chart 2: Line — spending trends over time ────────────
-// PURPOSE: Shows how countries have changed spending over time.
-// FINDING: Peru has consistently spent LESS than peers.
-//          This contextualises why its growth is high despite
-//          low spending — other structural factors are at play.
-//
-// UK data: live from ECO API (gbr/educ indicator)
-// Peru, Chile, Germany: World Bank WDI inline values
-// (ECO API does not carry all countries for this indicator)
+// ============================================================
+// CC3 Chart 2 — Connected Scatterplot: Education Spending vs GDP Growth
+// Each line traces a country's path through 2006–2024
+// Source: World Bank WDI via GitHub repo
+// Columns: countryname, año, gdp_growth, spending
+// ============================================================
 
+// ============================================================
+// Helper: genera un panel individual por país
+// ============================================================
+function makePanel(country) {
+  return {
+    "width": 300,
+    "height": 160,
+    "title": {
+      "text": country,
+      "fontSize": 12,
+      "fontWeight": "bold",
+      "anchor": "start",
+      "color": "#333"
+    },
+    "data": {
+      "url": "https://raw.githubusercontent.com/dvegasdelcastillo/dvegasdelcastillo.github.io/refs/heads/main/data/educ_GDPg_06-24.csv",
+      "format": {"type": "csv"}
+    },
+    "transform": [
+      {"filter": `datum.countryname === '${country}'`},
+      {"calculate": "toNumber(datum.spending)",   "as": "spending_n"},
+      {"calculate": "toNumber(datum.gdp_growth)", "as": "growth_n"},
+      {"calculate": "toNumber(datum.año)",        "as": "year_n"}
+    ],
+    "layer": [
+      // Zero reference line
+      {
+        "mark": {"type": "rule", "color": "#ddd", "strokeWidth": 1},
+        "encoding": {"y": {"datum": 0}}
+      },
+      // GDP Growth — bars (blue)
+      {
+        "mark": {"type": "bar", "opacity": 0.55, "color": "#179FDB"},
+        "encoding": {
+          "x": {
+            "field": "year_n", "type": "ordinal",
+            "axis": {
+              "title": null,
+              "labelAngle": -45,
+              "labelFontSize": 9,
+              "values": [2006, 2008, 2010, 2012, 2014, 2016, 2018, 2020, 2022, 2024]
+            }
+          },
+          "y": {
+            "field": "growth_n", "type": "quantitative",
+            "scale": {"domain": [-12, 15]},
+            "axis": {"title": "GDP Growth / Spending (%)", "labelFontSize": 9,
+                     "tickCount": 5, "grid": false}
+          },
+          "tooltip": [
+            {"field": "countryname", "title": "Country"},
+            {"field": "year_n",      "title": "Year"},
+            {"field": "growth_n",    "format": ".1f", "title": "GDP Growth (%)"}
+          ]
+        }
+      },
+      // Education Spending — line (red)
+      {
+        "mark": {"type": "line", "color": "#E6224B", "strokeWidth": 2, "point": true},
+        "transform": [{"filter": "datum.spending_n > 0"}],
+        "encoding": {
+          "x": {"field": "year_n", "type": "ordinal"},
+          "y": {
+            "field": "spending_n", "type": "quantitative",
+            "scale": {"domain": [-12, 15]}
+          },
+          "tooltip": [
+            {"field": "countryname", "title": "Country"},
+            {"field": "year_n",      "title": "Year"},
+            {"field": "spending_n",  "format": ".1f", "title": "Spending (% GDP)"}
+          ]
+        }
+      }
+    ]
+  };
+}
+
+// ============================================================
+// CC3 Chart 2 — Matriz 2×4: vconcat de hconcat
+// ============================================================
 const spec_cc3_2 = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Public Education Spending Trends (% of GDP)",
+    "text": "Education Spending & GDP Growth by Country (2006–2024)",
     "subtitle": [
-      "Peru, Chile, Germany: World Bank WDI | UK: ECO API (live)",
-      "Source: data.worldbank.org & api.economicsobservatory.com"
+      "Bars (blue) = GDP Growth (%) | Line (red) = Education Spending (% GDP)",
+      "Source: World Bank WDI"
     ],
     "anchor": "start", "fontSize": 15, "subtitleFontSize": 11
   },
-  "width":  430,
-  "height": 252,
-  // We use a layer chart to combine:
-  //   - inline data for Peru, Chile, Germany (World Bank WDI)
-  //   - live API data for UK (ECO API)
-  "layer": [
-    // Layer 1: Peru, Chile, Germany — inline World Bank data
+  "vconcat": [
+    // Row 1
     {
-      "data": {
-        "values": [
-          {"year": 2010, "country": "Peru",    "spending": 2.8},
-          {"year": 2012, "country": "Peru",    "spending": 3.0},
-          {"year": 2014, "country": "Peru",    "spending": 3.5},
-          {"year": 2016, "country": "Peru",    "spending": 3.8},
-          {"year": 2018, "country": "Peru",    "spending": 3.9},
-          {"year": 2020, "country": "Peru",    "spending": 3.7},
-          {"year": 2022, "country": "Peru",    "spending": 3.8},
-          {"year": 2010, "country": "Chile",   "spending": 4.2},
-          {"year": 2012, "country": "Chile",   "spending": 4.6},
-          {"year": 2014, "country": "Chile",   "spending": 4.9},
-          {"year": 2016, "country": "Chile",   "spending": 5.4},
-          {"year": 2018, "country": "Chile",   "spending": 5.6},
-          {"year": 2020, "country": "Chile",   "spending": 5.8},
-          {"year": 2022, "country": "Chile",   "spending": 5.4},
-          {"year": 2010, "country": "Germany", "spending": 4.9},
-          {"year": 2012, "country": "Germany", "spending": 5.0},
-          {"year": 2014, "country": "Germany", "spending": 4.9},
-          {"year": 2016, "country": "Germany", "spending": 4.8},
-          {"year": 2018, "country": "Germany", "spending": 4.9},
-          {"year": 2020, "country": "Germany", "spending": 5.1},
-          {"year": 2022, "country": "Germany", "spending": 4.9}
-        ]
-      },
-      "mark": {"type": "line", "point": true, "strokeWidth": 2},
-      "encoding": {
-        "x": {
-          "field": "year", "type": "ordinal", "title": "Year",
-          "axis": {"grid": false}
-        },
-        "y": {
-          "field": "spending", "type": "quantitative",
-          "title": "Education Spending (% GDP)",
-          "scale": {"domain": [2, 7]}
-        },
-        "color": {
-          "field": "country", "type": "nominal", "title": "Country"
-        },
-        "tooltip": [
-          {"field": "country",  "title": "Country"},
-          {"field": "year",     "title": "Year"},
-          {"field": "spending", "format": ".1f", "title": "Spending (% GDP)"}
-        ]
-      }
+      "hconcat": [
+        makePanel("Peru"),
+        makePanel("Chile")
+      ]
     },
-    // Layer 2: UK — live ECO API
-    // ECO API URL: https://api.economicsobservatory.com/gbr/educ?vega
-    // Returns: [{date, value}] where value = education spending % GDP
+    // Row 2
     {
-      "data": {
-        "url": "https://api.economicsobservatory.com/gbr/educ?vega"
-      },
-      // Filter to match the same 2010-2022 range as the inline data
-      "transform": [
-        {"filter": "year(datum.date) >= 2010 && year(datum.date) <= 2022"},
-        {"calculate": "year(datum.date)", "as": "year"},
-        {"calculate": "'UK (API)'",        "as": "country"}
-      ],
-      "mark": {
-        "type": "line",
-        "point": true,
-        "strokeWidth": 2,
-        "strokeDash": [4, 2]  // dashed to distinguish it as live data
-      },
-      "encoding": {
-        "x": {
-          "field": "year", "type": "ordinal",
-          "axis": {"grid": false}
-        },
-        "y": {
-          "field": "value", "type": "quantitative",
-          "scale": {"domain": [2, 7]}
-        },
-        "color": {
-          // Fix UK to a specific colour so it matches the legend visually
-          "value": "#E6224B"
-        },
-        "tooltip": [
-          {"field": "country", "title": "Country"},
-          {"field": "year",    "title": "Year"},
-          {"field": "value",   "format": ".1f", "title": "Spending (% GDP)"}
-        ]
-      }
+      "hconcat": [
+        makePanel("Colombia"),
+        makePanel("Brazil")
+      ]
+    },
+    // Row 3
+    {
+      "hconcat": [
+        makePanel("United Kingdom"),
+        makePanel("Germany")
+      ]
+    },
+    // Row 4
+    {
+      "hconcat": [
+        makePanel("Finland"),
+        makePanel("Portugal")
+      ]
     }
-  ]
-};
-
-// ============================================================
-// CC4: REPLICATION — UK Unemployment rate
-// Original: ONS / BBC-style chart
-// ============================================================
-
-// Shared dataset for CC4
-const ukUnemplData = [
-  {"date": "2000-01-01", "rate": 5.5}, {"date": "2001-01-01", "rate": 5.1},
-  {"date": "2002-01-01", "rate": 5.2}, {"date": "2003-01-01", "rate": 5.0},
-  {"date": "2004-01-01", "rate": 4.7}, {"date": "2005-01-01", "rate": 4.8},
-  {"date": "2006-01-01", "rate": 5.4}, {"date": "2007-01-01", "rate": 5.3},
-  {"date": "2008-01-01", "rate": 5.6}, {"date": "2009-01-01", "rate": 7.6},
-  {"date": "2010-01-01", "rate": 7.9}, {"date": "2011-01-01", "rate": 8.1},
-  {"date": "2012-01-01", "rate": 7.9}, {"date": "2013-01-01", "rate": 7.5},
-  {"date": "2014-01-01", "rate": 6.2}, {"date": "2015-01-01", "rate": 5.4},
-  {"date": "2016-01-01", "rate": 4.9}, {"date": "2017-01-01", "rate": 4.4},
-  {"date": "2018-01-01", "rate": 4.1}, {"date": "2019-01-01", "rate": 3.8},
-  {"date": "2020-01-01", "rate": 4.5}, {"date": "2021-01-01", "rate": 4.5},
-  {"date": "2022-01-01", "rate": 3.7}, {"date": "2023-01-01", "rate": 4.2},
-  {"date": "2024-01-01", "rate": 4.4}
-];
-
-// CC4 Chart 1 — REPLICATED (mimics BBC/ONS simple line style)
-const spec_cc4_1 = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "UK Unemployment Rate (replicated)",
-    "subtitle": "% of labour force | Source: ONS",
-    "anchor": "start", "fontSize": 14, "subtitleFontSize": 11,
-    "color": "#222"
-  },
-  "width":  440,
-  "height": 280,
-  "background": "#fff8f0",
-  "data": {"values": ukUnemplData},
-  "mark": {"type": "line", "color": "#c0392b", "strokeWidth": 2},
-  "encoding": {
-    "x": {"field": "date", "type": "temporal", "title": null,
-          "axis": {"grid": false, "labelFontSize": 11}},
-    "y": {"field": "rate", "type": "quantitative", "title": "% Unemployed",
-          "axis": {"grid": true, "gridDash": [2,2], "labelFontSize": 11},
-          "scale": {"domain": [0, 10]}},
-    "tooltip": [
-      {"field": "date", "type": "temporal", "format": "%Y", "title": "Year"},
-      {"field": "rate", "type": "quantitative", "format": ".1f", "title": "Unemployment %"}
-    ]
+  ],
+  "config": {
+    "view": {"stroke": "#eee"},
+    "concat": {"spacing": 20}
   }
 };
 
-// CC4 Chart 2 — IMPROVED version
-const spec_cc4_2 = {
+// ============================================================
+// CC4 — REPLICATION + IMPROVEMENT
+// Original: ONS "Contributions to monthly GDP growth"
+// Source: ONS GDP monthly estimate bulletins (Dec 2024–Dec 2025)
+// Values traced from ONS monthly bulletins:
+// ons.gov.uk/economy/grossdomesticproductgdp/bulletins/gdpmonthlyestimateuk
+// ============================================================
+
+// ============================================================
+// DATA SOURCE: ONS GDP contributions CSV
+// Downloaded from:
+// ons.gov.uk/generator?uri=/economy/grossdomesticproductgdp/
+// bulletins/gdpmonthlyestimateuk/december2025/26b36ef2&format=csv
+// Cleaned (removed 4 header rows, standardised month labels)
+// and hosted at: /data/ons_gdp_contributions.csv
+// ============================================================
+
+// Month order for correct x-axis sorting
+const monthOrder = [
+  "Dec 2024","Jan 2025","Feb 2025","Mar 2025","Apr 2025",
+  "May 2025","Jun 2025","Jul 2025","Aug 2025","Sep 2025",
+  "Oct 2025","Nov 2025","Dec 2025"
+];
+
+// Peak/trough annotation data (for improved chart)
+const annotations = [
+  {"month": "Mar 2025", "gdp": 0.7,  "text": "Peak: +0.7pp",    "dy": -13},
+  {"month": "Oct 2025", "gdp": -0.1, "text": "Contraction",     "dy":  14}
+];
+
+// Data URL — points to cleaned CSV in your GitHub repo
+const DATA_URL = "https://raw.githubusercontent.com/dvegasdelcastillo/dvegasdelcastillo.github.io/main/data/ons_gdp_contributions.csv";
+
+const spec_cc4_1 = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "UK Unemployment Rate 2000–2024 (improved)",
-    "subtitle": "Annual average | Shaded: recessions (2008, 2020) | Source: ONS",
-    "anchor": "start", "fontSize": 14, "subtitleFontSize": 11
+    "text": "Contributions to 3-month GDP Growth, UK (replicated)",
+    "subtitle": "Percentage points | Source: ONS GDP monthly estimate, Dec 2025",
+    "anchor": "start", "fontSize": 14, "subtitleFontSize": 10,
+    "color": "#222"
   },
-  "width":  440,
-  "height": 280,
+  "width": 440, "height": 280,
+  "background": "#ffffff",
+  "data": {"url": DATA_URL, "format": {"type": "csv"}},
+  "transform": [
+    {"fold": ["services", "production", "construction"],
+     "as":   ["sector", "contribution"]}
+  ],
   "layer": [
-    // Recession shading 2008–2010
+    // Stacked bars
     {
-      "data": {"values": [{"x1": "2008-01-01", "x2": "2010-01-01"}]},
-      "mark": {"type": "rect", "color": "#f5c6c6", "opacity": 0.45},
+      "mark": {"type": "bar"},
       "encoding": {
-        "x":  {"field": "x1", "type": "temporal"},
-        "x2": {"field": "x2", "type": "temporal"}
-      }
-    },
-    // Recession shading 2020
-    {
-      "data": {"values": [{"x1": "2020-01-01", "x2": "2021-06-01"}]},
-      "mark": {"type": "rect", "color": "#f5c6c6", "opacity": 0.45},
-      "encoding": {
-        "x":  {"field": "x1", "type": "temporal"},
-        "x2": {"field": "x2", "type": "temporal"}
-      }
-    },
-    // Area + line
-    {
-      "data": {"values": ukUnemplData},
-      "layer": [
-        {
-          "mark": {"type": "area", "color": "#0063AF", "opacity": 0.15},
-          "encoding": {
-            "x": {"field": "date", "type": "temporal", "title": null,
-                  "axis": {"grid": false, "labelFontSize": 11}},
-            "y": {"field": "rate", "type": "quantitative",
-                  "scale": {"domain": [0, 10]},
-                  "axis": {"title": "Unemployment (%)", "labelFontSize": 11}}
-          }
+        "x": {
+          "field": "month", "type": "ordinal", "title": null,
+          "sort": monthOrder,
+          "axis": {"labelAngle": -45, "labelFontSize": 9, "grid": false}
         },
-        {
-          "mark": {"type": "line", "color": "#0063AF", "strokeWidth": 2.5},
-          "encoding": {
-            "x": {"field": "date", "type": "temporal"},
-            "y": {"field": "rate", "type": "quantitative"},
-            "tooltip": [
-              {"field": "date", "type": "temporal", "format": "%Y", "title": "Year"},
-              {"field": "rate", "type": "quantitative", "format": ".1f", "title": "Unemployment %"}
-            ]
-          }
-        }
-      ]
+        "y": {
+          "field": "contribution", "type": "quantitative",
+          "title": "Percentage points", "stack": "zero",
+          "axis": {"grid": true, "gridOpacity": 0.3, "labelFontSize": 9}
+        },
+        "color": {
+          "field": "sector", "type": "nominal", "title": null,
+          "scale": {
+            "domain": ["services", "production", "construction"],
+            "range": ["#00B5CC", "#7B2D8B", "#8DB600"]
+          },
+          "legend": {"orient": "top", "labelFontSize": 10,
+                     "labelExpr": "upper(slice(datum.label,0,1)) + slice(datum.label,1)"}
+        },
+        "tooltip": [
+          {"field": "month",        "title": "Month"},
+          {"field": "sector",       "title": "Sector"},
+          {"field": "contribution", "format": ".2f", "title": "Contribution (pp)"}
+        ]
+      }
     },
-    // Annotation: peak 2011
+    // GDP line
     {
-      "data": {"values": [{"date": "2011-01-01", "rate": 8.1, "label": "Peak: 8.1%"}]},
-      "mark": {"type": "text", "dy": -10, "fontSize": 11, "color": "#c0392b", "fontWeight": "bold"},
+      "mark": {"type": "line", "color": "#003087", "strokeWidth": 2},
       "encoding": {
-        "x": {"field": "date", "type": "temporal"},
-        "y": {"field": "rate", "type": "quantitative"},
-        "text": {"field": "label"}
+        "x": {"field": "month", "type": "ordinal", "sort": monthOrder},
+        "y": {"field": "gdp",   "type": "quantitative"},
+        "tooltip": [
+          {"field": "month", "title": "Month"},
+          {"field": "gdp",   "format": ".2f", "title": "GDP (pp)"}
+        ]
       }
     }
   ]
+};
+
+
+const spec_cc4_2 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Contributions to 3-month GDP Growth, UK (improved)",
+    "subtitle": [
+      "Stacked bars = sector contributions | Line = total GDP | Source: ONS",
+      "Improvements: zero line, direct labels, accessible colours, area fill"
+    ],
+    "anchor": "start", "fontSize": 14, "subtitleFontSize": 10
+  },
+  "width": 440, "height": 280,
+  "layer": [
+    // Zero reference line
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "rule", "color": "#666", "strokeWidth": 1, "strokeDash": [3,3]},
+      "encoding": {"y": {"datum": 0}}
+    },
+    // Stacked bars — accessible colours
+    {
+      "data": {"url": DATA_URL, "format": {"type": "csv"}},
+      "transform": [
+        {"fold": ["services", "production", "construction"],
+         "as":   ["sector", "contribution"]}
+      ],
+      "mark": {"type": "bar", "opacity": 0.85},
+      "encoding": {
+        "x": {
+          "field": "month", "type": "ordinal", "title": null,
+          "sort": monthOrder,
+          "axis": {"labelAngle": -45, "labelFontSize": 9, "grid": false}
+        },
+        "y": {
+          "field": "contribution", "type": "quantitative",
+          "title": "Percentage point contribution", "stack": "zero",
+          "axis": {"grid": true, "gridOpacity": 0.2, "labelFontSize": 9, "tickCount": 6}
+        },
+        "color": {
+          "field": "sector", "type": "nominal", "title": null,
+          "scale": {
+            "domain": ["services", "production", "construction"],
+            "range": ["#179FDB", "#E6224B", "#00A767"]
+          },
+          "legend": {"orient": "top", "labelFontSize": 10,
+                     "labelExpr": "upper(slice(datum.label,0,1)) + slice(datum.label,1)"}
+        },
+        "tooltip": [
+          {"field": "month",        "title": "Month"},
+          {"field": "sector",       "title": "Sector"},
+          {"field": "contribution", "format": ".2f", "title": "Contribution (pp)"}
+        ]
+      }
+    },
+    // GDP area fill
+    {
+      "data": {"url": DATA_URL, "format": {"type": "csv"}},
+      "mark": {"type": "area", "color": "#0063AF", "opacity": 0.08},
+      "encoding": {
+        "x": {"field": "month", "type": "ordinal", "sort": monthOrder},
+        "y": {"field": "gdp",   "type": "quantitative"}
+      }
+    },
+    // GDP line
+    {
+      "data": {"url": DATA_URL, "format": {"type": "csv"}},
+      "mark": {"type": "line", "color": "#0063AF", "strokeWidth": 2.5},
+      "encoding": {
+        "x": {"field": "month", "type": "ordinal", "sort": monthOrder},
+        "y": {"field": "gdp",   "type": "quantitative"},
+        "tooltip": [
+          {"field": "month", "title": "Month"},
+          {"field": "gdp",   "format": ".2f", "title": "GDP total (pp)"}
+        ]
+      }
+    },
+    // Annotations
+    {
+      "data": {"values": annotations},
+      "mark": {"type": "text", "fontSize": 9, "fontWeight": "bold"},
+      "encoding": {
+        "x":    {"field": "month", "type": "ordinal", "sort": monthOrder},
+        "y":    {"field": "gdp",   "type": "quantitative"},
+        "dy":   {"field": "dy"},
+        "text": {"field": "text"},
+        "color": {
+          "condition": {"test": "datum.gdp > 0", "value": "#0063AF"},
+          "value": "#E6224B"
+        }
+      }
+    }
+  ],
+  "config": {"view": {"stroke": null}, "axis": {"domain": false}}
 };
 
 // ============================================================
